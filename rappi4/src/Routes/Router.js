@@ -12,7 +12,7 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route index element={ <Feed /> } />
+                <Route index exact path='/' element={ <Feed /> } />
                 <Route path='/default' element={ <Default /> } />
                 <Route path='/login' element={ <Login /> } />
                 <Route path='/cadastro' element={ <Signup /> } />
