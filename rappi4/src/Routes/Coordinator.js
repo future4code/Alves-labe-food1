@@ -25,3 +25,7 @@ export const goToRestaurants = (navigate) => {
 export const goToOrderInProgress = (navigate) => {
     navigate('/pedidoEmAndamento')
 }
+
+export const goBack = (navigate) => {
+    navigate(-1)
+}
