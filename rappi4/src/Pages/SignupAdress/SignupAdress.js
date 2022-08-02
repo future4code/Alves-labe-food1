@@ -6,6 +6,7 @@ import { BASE_URL, HEADER } from '../../Constants/urls'
 import axios from 'axios'
 import TextField from '@mui/material/TextField';
 import {useUnprotectedPage} from '../../Hooks/useUnprotectedPage'
+import { goToFeed } from '../../Routes/Coordinator'
 
 export default function SignupAdress() {
   // useUnprotectedPage()
@@ -26,6 +27,8 @@ export default function SignupAdress() {
     .then((res) => {
       localStorage.setItem('token', res.data.token)
       cleanFields()
+      goToFeed(navigate)
+      console.log(res)
     })
     .catch((err) => {
       console.log(err)

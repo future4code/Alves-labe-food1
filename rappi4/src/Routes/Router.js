@@ -18,7 +18,7 @@ export default function Router() {
                 <Route path='/cadastro' element={ <Signup /> } />
                 <Route path='/cadastro/endereco' element={ <SignupAdress /> } />
                 <Route path='/feed' element={ <Feed /> } />
-                <Route path='/restaurantes' element={ <Restaurants /> } />
+                <Route path='/restaurantes/:id' element={ <Restaurants /> } />
                 <Route path='/pedidoEmAndamento' element={ <OrderInProgress /> } />
             </Routes>
         </BrowserRouter>

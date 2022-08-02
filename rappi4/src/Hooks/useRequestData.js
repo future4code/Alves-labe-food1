@@ -10,8 +10,8 @@ export default function useRequestData(inicialData, url, refresh) {
         // setIsLoading(true)
         axios.get(url, HEADER)
             .then((res) => {
-                console.log(res)
-                // setData(res.data)
+                // console.log(res)
+                setData(res.data.restaurants)
                 // setIsLoading(false)
             }).catch((err) => {
                 // setIsLoading(false)
