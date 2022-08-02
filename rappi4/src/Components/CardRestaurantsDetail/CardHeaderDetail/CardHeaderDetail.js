@@ -1,19 +1,23 @@
 import React from 'react'
-import { ContainerHeaderCard, LogoRestaurant, TextDetails, TitleRestaurant } from './CardHeaderDetailStyled'
+import { ContainerHeaderCard, ContainerTexts, ContainerTimerShipping, LogoRestaurant, TextDetails, TitleRestaurant } from './CardHeaderDetailStyled'
 
-const CardHeaderDetail = ({rest}) => {
-    console.log(rest)
+const CardHeaderDetail = ({ rest }) => {
     return (
-    <ContainerHeaderCard>
-    <LogoRestaurant src={rest.logoUrl} />
-    <TitleRestaurant>{rest.name} </TitleRestaurant>
-    <TextDetails>{rest.category}</TextDetails>
-    <TextDetails>{rest.deliveryTime}</TextDetails>
-    <TextDetails>{rest.shipping}</TextDetails>
-    <TextDetails>{rest.address}</TextDetails>
-    
-    </ContainerHeaderCard>
-  )
+        <ContainerHeaderCard>
+            <LogoRestaurant src={rest.logoUrl} />
+            <ContainerTexts>
+                <TitleRestaurant>{rest.name} </TitleRestaurant>
+                <TextDetails>{rest.category}</TextDetails>
+                <ContainerTimerShipping>
+                    <TextDetails>{rest.deliveryTime} min</TextDetails>
+                    <TextDetails>Frete R${rest.shipping},00</TextDetails>
+                </ContainerTimerShipping>
+                <TextDetails>{rest.address}</TextDetails>
+            </ContainerTexts>
+
+
+        </ContainerHeaderCard>
+    )
 }
 
 export default CardHeaderDetail
