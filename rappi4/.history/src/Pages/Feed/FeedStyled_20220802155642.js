@@ -74,5 +74,4 @@ export const DisplayCards = styled.section`
 display: flex;
 flex-direction: column;
 gap: 0.5rem;
-margin-bottom: 3.125rem;
 `

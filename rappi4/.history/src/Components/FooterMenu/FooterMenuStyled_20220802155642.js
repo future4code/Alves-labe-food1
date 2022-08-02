@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
 width: 360px;
 height: 49px;
-position: fixed;
+position: sticky;
 display: flex;
 flex-direction: row;
 justify-content: space-evenly;

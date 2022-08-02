@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ContainerCards = styled.div`
 width: 328px;
-height: 248px;
+height: 188px;
 padding: 0 0 16px;
 border-radius: 8px;
 border: solid 1px #b8b8b8;
@@ -11,7 +11,7 @@ border: solid 1px #b8b8b8;
 export const Logo = styled.div`
 img{ 
 width: 328px;
-height: 170px;
+height: 120px;
 margin: 0 0 12px;
 object-fit:cover, contain;
 }

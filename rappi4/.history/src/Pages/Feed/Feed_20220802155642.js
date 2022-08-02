@@ -14,7 +14,6 @@ export default function Feed() {
   const [searchInput, setSearchInput] = useState('')
   const navigate = useNavigate()
   useVerifyAdress()
-  useProtectedPage()
 
   const setCategory = (category) => {
     setActiveCategory(category)
