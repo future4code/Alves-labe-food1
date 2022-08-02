@@ -13,5 +13,4 @@ export const DivCategory = styled.section`
 display: flex;
 flex-direction: row;
 overflow: auto;
-gap: 4px;
 `

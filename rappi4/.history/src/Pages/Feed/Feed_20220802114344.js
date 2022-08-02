@@ -28,13 +28,10 @@ export default function Feed() {
     .includes(searchInput.toLowerCase())
   })
   .filter((restaurant) => {
-    if (activeCategory === 'Todos') {
-      return restaurant.name
-    } else {
     return restaurant.category
     .toLowerCase()
     .includes(activeCategory.toLowerCase())
-  }})
+  })
   .map((restaurant) => {
     return (
       <div>

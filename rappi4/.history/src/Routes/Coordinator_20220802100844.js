@@ -29,7 +29,3 @@ export const goToOrderInProgress = (navigate) => {
 export const goBack = (navigate) => {
     navigate(-1)
 }
-
-export const goToSearch = (navigate) => {
-    navigate('/busca')
-}

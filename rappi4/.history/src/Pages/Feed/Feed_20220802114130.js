@@ -28,13 +28,10 @@ export default function Feed() {
     .includes(searchInput.toLowerCase())
   })
   .filter((restaurant) => {
-    if (activeCategory === 'Todos') {
-      return restaurant.name
-    } else {
     return restaurant.category
     .toLowerCase()
     .includes(activeCategory.toLowerCase())
-  }})
+  })
   .map((restaurant) => {
     return (
       <div>
@@ -46,13 +43,12 @@ export default function Feed() {
 
   const categorias = restaurants.map((restaurant) => {    return restaurant.category})
   let filteredCategories = [...new Set(categorias)]
-  const teste = ['Todos', ...filteredCategories]
+  const teste = [...filteredCategories, 'Todos']
 
-const mappedCategories = teste.map((category) => {
+const mappedCategories = filteredCategories.map((category) => {
   return <p onClick={()=>setCategory(category)}>{category}</p>
 })
 
-console.log(activeCategory)
 
   return (
 <MainContainer>
