@@ -6,5 +6,7 @@ font-family: 'IBM Plex Sans', sans-serif;
 display: flex;
 justify-content: center;
 align-items: center;
+width: 100vw;
+
 }
 `
