@@ -26,12 +26,10 @@ const CardProducts = ({ categories, restaurantDetail }) => {
                             <TitleProduct>{product.name}</TitleProduct>
                             <DescriptonText>{product.description}</DescriptonText>
                             <ContainerPriceButton>
-                              <ValueProduct>R$ {product.price},00</ValueProduct>
+                              <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
                               <ButtonAdd>Adicionar</ButtonAdd>
                             </ContainerPriceButton>
                           </ContainerTexts>
-
-
                         </ContainerProducts>
                       )
                     }

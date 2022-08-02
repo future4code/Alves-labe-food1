@@ -3,16 +3,13 @@ import styled from "styled-components";
 export const ContainerHeaderCard = styled.section`
     display: flex;
     flex-direction: column;
-    /* margin: 1rem; */
 `
 export const LogoRestaurant = styled.img`
-    width: 21.5rem;
+    width: 100%;
     height: 7.5rem;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    /* object-fit: fill; */
-    /* object-fit: cover; */
-    /* object-fit: contain; */
+    object-fit: cover;
     align-self: center;
 `
 export const ContainerTexts = styled.section`
