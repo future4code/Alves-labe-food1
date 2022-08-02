@@ -44,11 +44,10 @@ export const ButtonCreate = styled.button`
 
 export const ClickHere = styled.h4`
 font-size: 1rem;
-font-weight: normal;
+font-weight: 400;
 `
 
 export const SpanClick = styled.span`
 font-size: 1rem;
 font-weight: 500;
-color: #0000EE;
 `
