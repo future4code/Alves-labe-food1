@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import GlobalContext from '../../Global/GlobalContext'
 import useVerifyAdress from '../../Hooks/useVerifyAdress'
 import { goToRestaurants } from '../../Routes/Coordinator'
-import { MainContainer } from './Styled'
+import { MainContainer, SearchBar } from './Styled'
 
 export default function Search() {
     const { restaurants } = useContext(GlobalContext)
@@ -44,7 +44,7 @@ export default function Search() {
 
     return (
         <MainContainer>
-        <input value={searchInput} onChange={onChangeSearch}></input>
+        <SearchBar value={searchInput} onChange={onChangeSearch}></SearchBar>
         {renderPage()}
         </MainContainer>
     )
