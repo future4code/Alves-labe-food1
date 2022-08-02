@@ -15,7 +15,7 @@ export default function CardFeed(props) {
     </DivName>
     <Divs>
     <POne>{props.restaurant.deliveryTime}min </POne>
-    <PTwo>Frete {props.restaurant.shipping.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </PTwo>
+    <PTwo>Frete R${props.restaurant.shipping} </PTwo>
     </Divs>
   </ContainerCards>
   )
