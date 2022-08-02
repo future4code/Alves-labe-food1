@@ -3,38 +3,45 @@ import { useNavigate } from 'react-router-dom'
 import GlobalContext from '../../Global/GlobalContext'
 import {useProtectedPage} from '../../Hooks/useProtectedPage'
 import useVerifyAdress from '../../Hooks/useVerifyAdress'
-import { goToRestaurants, goToSearch } from '../../Routes/Coordinator'
+import { goToRestaurants } from '../../Routes/Coordinator'
 import { DivCategory, MainContainer } from './FeedStyled'
 
 export default function Feed() {
   const {restaurants} = useContext(GlobalContext)
+  const [categories, setCategories] = useState([])
   const [activeCategory, setActiveCategory] = useState('')
   const [searchInput, setSearchInput] = useState('')
   const navigate = useNavigate()
   useVerifyAdress()
 
+  const onChangeSearch = (event) => {
+    setSearchInput(event.target.value)
+  }
+
   const setCategory = (category) => {
     setActiveCategory(category)
   }
   
-
+  // const showRestaurants = restaurants.map((restaurant) => {
+  //   return (
+  //     <div key = {restaurant.id}>
+  //     <p>{restaurant.name}</p>
+  //     <button onClick={() => {goToRestaurants(navigate, restaurant.id)}}>Detalhes</button>
+  //     </div>
+  //   )
+  // })
   const showRestaurants = restaurants.filter((restaurant) => {
     return restaurant.name 
     .toLowerCase()
     .includes(searchInput.toLowerCase()) || restaurant.description
     .toLowerCase()
-    .includes(searchInput.toLowerCase()) || restaurant.category
-    .toLowerCase()
     .includes(searchInput.toLowerCase())
   })
   .filter((restaurant) => {
-    if (activeCategory === 'Todos') {
-      return restaurant.name
-    } else {
     return restaurant.category
     .toLowerCase()
     .includes(activeCategory.toLowerCase())
-  }})
+  })
   .map((restaurant) => {
     return (
       <div>
@@ -46,17 +53,15 @@ export default function Feed() {
 
   const categorias = restaurants.map((restaurant) => {    return restaurant.category})
   let filteredCategories = [...new Set(categorias)]
-  const teste = ['Todos', ...filteredCategories]
 
-const mappedCategories = teste.map((category) => {
+const mappedCategories = filteredCategories.map((category) => {
   return <p onClick={()=>setCategory(category)}>{category}</p>
 })
 
-console.log(activeCategory)
 
   return (
 <MainContainer>
-<input placeholder='Restaurante' onClick={()=> goToSearch(navigate)}></input>
+<input value={searchInput} onChange={onChangeSearch}></input>
 <DivCategory>{mappedCategories}</DivCategory>
 {showRestaurants}
 </MainContainer>

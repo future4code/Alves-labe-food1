@@ -20,6 +20,8 @@ export default function useVerifyAdress() {
         .then((res) => {
             if(res.data.user.hasAddress === false) {
                 goToAdressSignup(navigate)
+            } else {
+                goToFeed(navigate)
             }
         })
         .catch((err) => {

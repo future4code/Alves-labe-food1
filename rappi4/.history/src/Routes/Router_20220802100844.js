@@ -7,7 +7,6 @@ import SignupAdress from '../Pages/SignupAdress/SignupAdress'
 import Feed from '../Pages/Feed/Feed'
 import Restaurants from '../Pages/Restaurants/Restaurants'
 import OrderInProgress from '../Pages/OrderInProgress/OrderInProgress'
-import Search from '../Pages/Search/Search'
 
 export default function Router() {
     return (
@@ -21,7 +20,6 @@ export default function Router() {
                 <Route path='/feed' element={ <Feed /> } />
                 <Route path='/restaurantes/:id' element={ <Restaurants /> } />
                 <Route path='/pedidoEmAndamento' element={ <OrderInProgress /> } />
-                <Route path='/busca' element={ <Search /> } />
             </Routes>
         </BrowserRouter>
     )
