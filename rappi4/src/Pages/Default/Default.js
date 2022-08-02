@@ -7,7 +7,7 @@ import { goToLogin } from '../../Routes/Coordinator'
 export default function Default() {
   const navigate = useNavigate()
 
-  setTimeout(() => goToLogin(navigate), 2000);
+  setTimeout(() => goToLogin(navigate), 3000);
 
   return (
     <ContainerPage>
