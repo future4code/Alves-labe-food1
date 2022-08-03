@@ -7,20 +7,15 @@ const GlobalState = (props) => {
     const [refresh, setRefresh] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const restaurants = useRequestData([], `${BASE_URL}/restaurants`, refresh, setIsLoading)
-    const [cart, setCart] = useState({})
+    const [cart, setCart] = useState([])
     const [isActiveOrder, setIsActiveOrder] = useState(false)
-
-    const addToCart = (product) => {
-        const newCart = [...cart, product]
-        setCart(newCart)
-    }
 
     const Provider = GlobalContext.Provider
 
     const values = {
         restaurants,
-        addToCart,
-        cart
+        cart,
+        setCart
     }
 
     return (

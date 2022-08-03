@@ -8,6 +8,8 @@ import Feed from '../Pages/Feed/Feed'
 import Restaurants from '../Pages/Restaurants/Restaurants'
 import OrderInProgress from '../Pages/OrderInProgress/OrderInProgress'
 import Search from '../Pages/Search/Search'
+import { CategoryP } from '../Pages/Feed/FeedStyled'
+import Cart from '../Pages/Cart/Cart'
 
 export default function Router() {
     return (
@@ -22,6 +24,7 @@ export default function Router() {
                 <Route path='/restaurantes/:id' element={ <Restaurants /> } />
                 <Route path='/pedidoEmAndamento' element={ <OrderInProgress /> } />
                 <Route path='/busca' element={ <Search /> } />
+                <Route path='/carrinho' element={ <Cart /> } />
             </Routes>
         </BrowserRouter>
     )

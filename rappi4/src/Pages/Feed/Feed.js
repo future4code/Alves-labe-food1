@@ -39,9 +39,9 @@ export default function Feed() {
           .includes(activeCategory.toLowerCase())
       }
     })
-    .map((restaurant) => {
+    .map((restaurant,index) => {
       return (
-        <CardFeed restaurant={restaurant} />
+        <CardFeed key={index} restaurant={restaurant} />
       )
     })
 
@@ -49,8 +49,8 @@ export default function Feed() {
   let filteredCategories = [...new Set(categorias)]
   const allCategories = ['Todos', ...filteredCategories]
 
-  const mappedCategories = allCategories.map((category) => {
-    return <CategoryP onClick={() => setCategory(category)}>{category}</CategoryP>
+  const mappedCategories = allCategories.map((category, index) => {
+    return <CategoryP key={index} onClick={() => setCategory(category)}>{category}</CategoryP>
   })
 
   console.log(activeCategory)

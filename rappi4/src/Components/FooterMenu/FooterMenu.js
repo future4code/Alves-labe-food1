@@ -7,7 +7,7 @@ import Profile from '../../Assets/avatar.svg'
 export default function FooterMenu() {
   return (
     <Container>
-        <img onClick={''} src={Home}/>
+        <img  src={Home}/>
         <img src={Cart}/>
         <img src={Profile}/>
     </Container>
