@@ -33,3 +33,7 @@ export const goBack = (navigate) => {
 export const goToSearch = (navigate) => {
     navigate('/busca')
 }
+
+export const goToCart = (navigate) => {
+    navigate('/carrinho')
+}
