@@ -40,12 +40,11 @@ export default function Restaurants() {
   }, [restaurantDetail])
 
 
-
   return (
     <div>
       <ContainerProducts>
         <CardHeaderDetail rest={restaurant} />
-        <CardProducts categories={categories} restaurantDetail={restaurantDetail} restaurant={restaurant}/>
+        <CardProducts categories={categories} restaurantDetail={restaurantDetail} restaurant={restaurant} />
       </ContainerProducts>
     </div>
   )
