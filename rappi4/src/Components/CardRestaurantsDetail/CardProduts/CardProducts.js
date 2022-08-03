@@ -3,8 +3,23 @@ import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
 import { ContainerCard, ContainerCategory, ContainerPriceButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 
-const CardProducts = ({ categories, restaurantDetail }) => {
-  const { addToCart } = useContext(GlobalContext)
+const CardProducts = ({ categories, restaurantDetail, restaurant}) => {
+  const { cart, setCart } = useContext(GlobalContext)
+
+  const addToCart = (product) => {
+    const index = cart.findIndex((i)=> i.id === product.id)
+    const newCart = [...cart]
+    if (index === -1){
+      const cartItem = {...product, quantity: 1}
+      newCart.push(cartItem)
+    } else {
+      newCart[index].quantity += 1
+    }
+    setCart(newCart)
+    localStorage.setItem("cart", JSON.stringify(newCart))
+    localStorage.setItem("restaurant",JSON.stringify(restaurant))
+}
+
 
   return (
 
@@ -21,7 +36,7 @@ const CardProducts = ({ categories, restaurantDetail }) => {
                   restaurantDetail && restaurantDetail.map((product) => {
                     if (item === product.category) {
                       return (
-                        <ContainerProducts>
+                        <ContainerProducts key={product.id}>
                           <ImgProducts src={product.photoUrl} alt="Foto do produto" />
                           <ContainerTexts>
                             <TitleProduct>{product.name}</TitleProduct>

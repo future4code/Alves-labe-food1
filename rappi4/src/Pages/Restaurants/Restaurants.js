@@ -45,7 +45,7 @@ export default function Restaurants() {
     <div>
       <ContainerProducts>
         <CardHeaderDetail rest={restaurant} />
-        <CardProducts categories={categories} restaurantDetail={restaurantDetail} />
+        <CardProducts categories={categories} restaurantDetail={restaurantDetail} restaurant={restaurant}/>
       </ContainerProducts>
     </div>
   )
