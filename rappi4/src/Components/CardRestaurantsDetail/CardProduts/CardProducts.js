@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
 import { ContainerCard, ContainerCategory, ContainerPriceButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd } from './CardProductsStyled'
+import GlobalContext from '../../../Global/GlobalContext'
 
 const CardProducts = ({ categories, restaurantDetail }) => {
-
+  const { addToCart } = useContext(GlobalContext)
 
   return (
 
@@ -27,7 +28,7 @@ const CardProducts = ({ categories, restaurantDetail }) => {
                             <DescriptonText>{product.description}</DescriptonText>
                             <ContainerPriceButton>
                               <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
-                              <ButtonAdd>Adicionar</ButtonAdd>
+                              <ButtonAdd onClick={()=>{addToCart(product)}}>Adicionar</ButtonAdd>
                             </ContainerPriceButton>
                           </ContainerTexts>
                         </ContainerProducts>

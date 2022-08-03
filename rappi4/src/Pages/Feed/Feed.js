@@ -58,14 +58,11 @@ export default function Feed() {
   return (
     <MainContainer>
       <SearchBar placeholder='Restaurante' onClick={() => goToSearch(navigate)}></SearchBar>
-
       <DivCategory>{mappedCategories}</DivCategory>
       <DisplayCards>
         {showRestaurants}
       </DisplayCards>
-
       <FooterMenu />
-
     </MainContainer>
   )
 }
