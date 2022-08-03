@@ -8,14 +8,11 @@ import CardHeaderDetail from '../../Components/CardRestaurantsDetail/CardHeaderD
 import CardProducts from '../../Components/CardRestaurantsDetail/CardProduts/CardProducts'
 import { ContainerProducts } from './RestaurantsStyled'
 export default function Restaurants() {
-
   const params = useParams()
-
   const [restaurantDetail, setRestauranteDetail] = useState([])
   const [restaurant, setRestaurant] = useState([])
   const [categories, setCategories] = useState([])
   useProtectedPage()
-
 
   const token = localStorage.getItem('token')
 
@@ -41,9 +38,6 @@ export default function Restaurants() {
     })
     setCategories(categories)
   }, [restaurantDetail])
-
-
-  console.log(restaurantDetail)
 
 
 
