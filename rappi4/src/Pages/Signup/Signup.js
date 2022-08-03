@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ButtonCreate, FormStyled, Logo, MainContainer } from './SignupStyled'
+import { ButtonCreate, FormStyled, Logo, MainContainer, StyledEye } from './SignupStyled'
 import LogoImg from '../../Assets/logo-future-eats-invert.svg'
 import useForm from '../../Hooks/useForm'
 import TextField from '@mui/material/TextField';
@@ -8,14 +8,17 @@ import { goToAdressSignup } from '../../Routes/Coordinator'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios';
 import InputMask from 'react-input-mask';
-import {useUnprotectedPage} from '../../Hooks/useUnprotectedPage'
+import { useUnprotectedPage } from '../../Hooks/useUnprotectedPage'
+import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 export default function Signup() {
-//   useUnprotectedPage()
+      useUnprotectedPage()
     const navigate = useNavigate()
     const { form, handleChange, cleanFields } = useForm({ name: "", email: "", cpf: "", password: "" })
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-
+    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword2, setShowPassword2] = useState(false)
     //
 
     const onChangePasswordConfirm = (event) => {
@@ -64,12 +67,21 @@ export default function Signup() {
         </InputMask>
     );
 
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword)
+    };
+
+    const handleClickShowPassword2 = () => {
+        setShowPassword2(!showPassword2)
+    };
+
     return (
         <MainContainer>
             <Logo src={LogoImg} alt='logo rappi4' />
             <h4>Cadastrar</h4>
             <FormStyled onSubmit={onSubmitSignup}>
                 <TextField
+                inputProps={{ minLength: 4 }}
                     name='name'
                     required
                     id="outlined-required"
@@ -89,10 +101,12 @@ export default function Signup() {
                     onChange={handleChange}
                 />
                 {InputCPF()}
-                <TextField
+
+
+                <OutlinedInput
                     inputProps={{ minLength: 6 }}
                     name='password'
-                    type='password'
+                    type={showPassword ? 'text' : 'password'}
                     required
                     id="outlined-required"
                     label="Senha"
@@ -101,18 +115,44 @@ export default function Signup() {
                     title='Sua senha precisa ter no mínimo 6 caracteres'
                     value={form.password}
                     onChange={handleChange}
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                            >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    }
                 />
-                <TextField
+
+                <OutlinedInput
                     inputProps={{ minLength: 6 }}
-                    type='password'
+                    name='password'
+                    type={showPassword2 ? 'text' : 'password'}
                     required
                     id="outlined-required"
-                    label="Confirmar"
-                    placeholder='Confirme a senha anterior'
+                    label="Confirmar senha"
+                    placeholder='Confirme sua senha'
+                    pattern="^.{6,}"
                     title='Sua senha precisa ter no mínimo 6 caracteres'
-                    pattern={"^.{6,}"}
+                    value={passwordConfirmation}
                     onChange={onChangePasswordConfirm}
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword2}
+                                edge="end"
+                            >
+                                {showPassword2 ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    }
                 />
+
 
                 <ButtonCreate type='submit'>Criar</ButtonCreate>
             </FormStyled>

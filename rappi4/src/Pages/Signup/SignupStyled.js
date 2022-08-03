@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import visibleEye from '../../Assets/visivel.png'
 
 export const MainContainer = styled.section`
 width: 100vw;
@@ -30,6 +31,8 @@ export const ButtonCreate = styled.button`
     color: #000000;
     border: none;
     cursor: pointer;
+    background-image: ${visibleEye};
+    background-repeat: repeat;
     
 `
 
