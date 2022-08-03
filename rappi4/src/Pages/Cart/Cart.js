@@ -3,12 +3,14 @@ import {useProtectedPage} from '../../Hooks/useProtectedPage'
 import GlobalContext from '../../Global/GlobalContext'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
+import {EndUser, TituloEndUser, ParEnd, NameRest, EndRest} from './CartStyled'
 
 export default function Cart() {
   const { cart , setCart} = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
   const [paymentMethod, setPaymentMethod] = useState("creditcard")
   const [restaurant, setRestaurant] = useState({})
+  const [total, setTotal] = useState(0)
 
   useProtectedPage()
 
@@ -22,6 +24,7 @@ export default function Cart() {
     setRestaurant(restaurant)
     setCart(newCart)
   },[])
+
   
   const placeOrder = () =>{
     const arrayProducts = cart && cart?.map((item)=>{
@@ -34,7 +37,6 @@ export default function Cart() {
       paymentMethod: paymentMethod
     }
 
-    console.log("confia que o pedido vai ser feito")
    
     axios
     .post(`${BASE_URL}/restaurants/${restaurant.id}/order`,body, {
@@ -44,7 +46,7 @@ export default function Cart() {
       }
   })
     .then((res) => {
-        console.log("deu certoooooo",res)
+        console.log("pedido feito",res)
     })
     .catch((err) => {
       alert(err.response.data.message)
@@ -70,13 +72,47 @@ export default function Cart() {
     })
 }, [])
 
-  console.log("cart na tela carrinho", cart)
-  console.log("perfil",profile)
+console.log(cart)
+console.log(profile)
+
+
+  useEffect(() => {
+    let totalCart = 0;
+    if (cart.length > 0) {
+        cart.forEach((product) => {
+          totalCart = totalCart + product.price * product.quantity
+        })
+        const subTotal = totalCart+restaurant?.shipping
+        setTotal(subTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })) 
+    } else {
+    setTotal(totalCart.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
+    } 
+}, [cart])
+
+//const restaurantShipping = restaurant.shipping.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+  const renderCart = cart.map((item) => {
+
+  })
   
   return (
-    <div>Cart
-      <h1>Cart</h1>
-      <button onClick={placeOrder}>Pedir</button>
+    <div>
+      <EndUser>
+      <TituloEndUser>Endereço de entrega</TituloEndUser>
+      <ParEnd>{profile.address}</ParEnd>
+      </EndUser>
+      <>
+      <NameRest>{restaurant.name}</NameRest>
+      <EndRest>{restaurant.address}</EndRest>
+      <EndRest>{restaurant.deliveryTime}min</EndRest>
+      </>
+      <p>Frete: {restaurant.shipping}</p>
+      <p>Total: {total}</p> 
+      <p>Forma de pagamento</p>
+      <hr />
+
+
+      <button onClick={placeOrder}>Confirmar</button>
     </div>
     
   )
