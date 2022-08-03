@@ -4,6 +4,7 @@ export const ContainerHeader = styled.div`
 height: 44px;
 display: flex;
 justify-content: space-between;
+border-bottom: 1px solid gray;
 `
 
 export const Titles = styled.p`
