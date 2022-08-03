@@ -10,10 +10,12 @@ import OrderInProgress from '../Pages/OrderInProgress/OrderInProgress'
 import Search from '../Pages/Search/Search'
 import { CategoryP } from '../Pages/Feed/FeedStyled'
 import Cart from '../Pages/Cart/Cart'
+import Header from '../Components/Header/Header'
 
 export default function Router() {
     return (
         <BrowserRouter>
+        <Header />
             <Routes>
                 <Route index exact path='/' element={ <Feed /> } />
                 <Route path='/default' element={ <Default /> } />
