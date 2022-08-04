@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../../Constants/urls'
-import { Card, ColumnAdress, ContainerAdress, ContainerEdit, ContainerInfos, DisplayCards, MainContainer, StyledHR } from './MyProfileStyled'
+import { Card, ColumnAdress, ContainerAdress, ContainerEdit, ContainerInfos, DateStyle, DisplayCards, EndereçoCadastrado, MainContainer, RestaurantName, Rua, StyledHR, StyledP, TotalPrice } from './MyProfileStyled'
 import Edit from '../../Assets/edit.svg'
-import { goToSignup } from '../../Routes/Coordinator'
+import { goToEditAddress, goToEditProfile, goToSignup } from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
+import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 
 export default function MyProfile() {
   const [profile, setProfile] = useState()
@@ -57,9 +58,9 @@ export default function MyProfile() {
     const date = new Date(timestamp);
     const convertedDate = date.toLocaleString('pt-BR'); 
     return <Card>
-      <p>{product.restaurantName}</p>
-      <p>{convertedDate}</p>
-      <p>subTotal: {product.totalPrice}</p>
+      <RestaurantName>{product.restaurantName}</RestaurantName>
+      <DateStyle>{convertedDate}</DateStyle>
+      <TotalPrice>subTotal: {product.totalPrice}</TotalPrice>
     </Card>
   })
 
@@ -70,9 +71,9 @@ export default function MyProfile() {
       <ContainerInfos>
         <ContainerEdit>
           <p>{profile && profile.name}</p>
-          <img onClick={''} src={Edit} />
+          <img onClick={()=> goToEditProfile(navigate)} src={Edit} />
         </ContainerEdit>
-        <p>{profile && profile.email}</p>
+        <StyledP>{profile && profile.email}</StyledP>
         <p>{profile && profile.cpf}</p>
 
 
@@ -80,16 +81,17 @@ export default function MyProfile() {
       <ContainerAdress>
 
         <ColumnAdress>
-          <p>Endereço cadastrado</p>
-          <p>{profile && profile.address}</p>
+          <EndereçoCadastrado>Endereço cadastrado</EndereçoCadastrado>
+          <Rua>{profile && profile.address}</Rua>
         </ColumnAdress>
-        <img src={Edit} />
+        <img src={Edit} onClick={()=> goToEditAddress(navigate)} />
       </ContainerAdress>
       <p>Historico de Pedidos</p>
       <StyledHR />
       <DisplayCards>
         {showOrders}
       </DisplayCards>
+      <FooterMenu />
     </MainContainer>
   )
 }

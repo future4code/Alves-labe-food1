@@ -5,6 +5,7 @@ height: 44px;
 display: flex;
 justify-content: space-between;
 border-bottom: 1px solid gray;
+margin-bottom: 8px;
 `
 
 export const Titles = styled.p`

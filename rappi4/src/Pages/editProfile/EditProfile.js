@@ -6,9 +6,11 @@ import { TextField } from '@mui/material'
 import axios from 'axios'
 
 export default function EditProfile() {
-  const { form, handleChange, cleanFields } = useForm({ name: "" , email: "", cpf: "" })
   const [profile, setProfile] = useState({})
+  const { form, handleChange, setform, cleanFields } = useForm({ name: "" , email: "", cpf: "" })
   const token = localStorage.getItem("token")
+
+    //
   
   useEffect(() => {
   axios
@@ -25,6 +27,19 @@ export default function EditProfile() {
         console.log(err)
       })
   }, [])
+
+  //
+
+  useEffect(() => {
+    if (profile) {
+      setform({
+        name: profile.name,
+        email: profile.email,
+        cpf: profile.cpf,
+      });
+    }
+  }, [profile]);
+
 
 
   const onSubmitProfile = (event) => {
@@ -43,9 +58,13 @@ export default function EditProfile() {
   alert(err.response.data)
 })
   }
+
+  //
+
+  
   return (
     <MainContainer>
-         <h4>Cadastrar</h4>
+         <h4>Editar Perfil</h4>
             <FormStyled onSubmit={onSubmitProfile}>
                 <TextField
                     inputProps={{ minLength: 4 }}
@@ -68,7 +87,7 @@ export default function EditProfile() {
                     label="Email"
                     placeholder='Email'
                     onChange={handleChange}
-                    value={form.email}
+                    value={form.email === "" ? form.email = profile.email : form.email}
                     type='text'
                 />
                 

@@ -16,12 +16,15 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 width: 22.5rem;
+img{
+    cursor: pointer;
+}
 `
 
 export const ContainerAdress = styled.section`
 width: 22.5rem;
 height: 4.125rem;
-margin: 16px 0;
+margin: 1rem 0;
 background-color: #eee;
 display: flex;
 flex-direction: row;
@@ -32,6 +35,7 @@ margin-bottom: 16px;
 img{
 height: 1.5rem;
 width: 1.5rem;
+cursor: pointer;
 }
 `
 
@@ -46,16 +50,71 @@ flex-direction: column;
 `
 
 export const Card = styled.section`
-width: 328px;
-height: 102px;
+width: 20.5rem;
+height: 6.375rem;
 margin: 7px 0 0;
-padding: 16px;
+padding: 1rem;
 border-radius: 8px;
 border: solid 1px #b8b8b8;
 flex-direction: column;
 `
 
 export const StyledHR = styled.hr`
-width: 328px;
-margin: 0 0 7px;
+width: 20.5rem;
+margin: 0 0 0.4375rem;
+`
+
+export const StyledP = styled.p`
+margin: 0;
+font-family: Roboto;
+font-size: 16px;
+`
+
+export const EndereçoCadastrado = styled.p`
+margin: 0 0 8px;
+font-family: Roboto;
+font-size: 16px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #b8b8b8;
+`
+
+export const Rua = styled.p`
+margin: 8px 0 0;
+font-family: Roboto;
+font-size: 16px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #000;
+`
+
+export const RestaurantName = styled.p`
+margin: 0 0 9px;
+font-family: Roboto;
+font-size: 18px;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #e86e5a;
+`
+
+export const DateStyle = styled.p`
+margin: 9px 0 7px;
+font-family: Roboto;
+font-size: 15px;
+`
+
+export const TotalPrice = styled.p`
+margin: 7px 0 0;
+font-family: Roboto;
+font-size: 18px;
+font-weight: bold;
 `
