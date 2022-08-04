@@ -78,8 +78,11 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                             <DescriptonText>{product.description}</DescriptonText>
                             <ContainerPriceButton>
                               <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
-                              <ButtonAdd onClick={() => { addToCart(product) }}>Adicionar</ButtonAdd>
+                              
                             </ContainerPriceButton>
+                            <ContainerButtons>
+                            <ButtonAdd onClick={() => { addToCart(product) }}>Adicionar</ButtonAdd>
+                            </ContainerButtons>
                           </ContainerTexts>
                         </ContainerProducts>
                         <Modal

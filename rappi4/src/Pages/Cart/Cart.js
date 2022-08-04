@@ -106,7 +106,7 @@ console.log(profile)
       <EndRest>{restaurant.address}</EndRest>
       <EndRest>{restaurant.deliveryTime}min</EndRest>
       </>
-      <p>Frete: {restaurant.shipping}</p>
+      <p>Frete: R$ {restaurant.shipping},00</p>
       <p>Total: {total}</p> 
       <p>Forma de pagamento</p>
       <hr />

@@ -70,3 +70,18 @@ export const ContainerPriceButton = styled.section`
     justify-content: space-between;
     width: 100%;
 `
+
+export const Style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '90%',
+    height: '216px',
+    bgcolor: '#fff',
+    boxShadow: 24,
+    p: '31px 16px 21px 16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '28px'
+  };
