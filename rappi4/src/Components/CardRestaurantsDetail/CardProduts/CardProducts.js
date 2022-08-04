@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
-import { ContainerCard, ContainerCategory, ContainerPriceButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons } from './CardProductsStyled'
+import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons, Quantity } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
-import { Alert, Box, Button, FormControl, MenuItem, Modal, Select, Snackbar, Typography } from '@mui/material';
+import { Alert, Box, FormControl, MenuItem, Modal, Select, Snackbar, Typography, Button } from '@mui/material';
 
 const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const { cart, setCart } = useContext(GlobalContext)
@@ -11,9 +11,16 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const handleClose = () => setOpen(false);
   const [quantity, setQuantity] = useState(1)
   const [newProduct, setNewProduct] = useState()
+  const [checkCart, setCheckCart] = useState([])
 
+  useEffect(() => {
+    const check = cart.filter((item) => item.id === newProduct.id)
+    console.log(check)
+    setCheckCart(check)
+  }, [cart])
+  console.log(checkCart)
   const addToCart = (product) => {
-    console.log(product)
+    // console.log(product)
     setNewProduct(product)
     handleOpen()
   }
@@ -22,7 +29,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     const index = cart.findIndex((i) => i.id === newProduct.id)
     const newCart = [...cart]
     if (index === -1) {
-      const cartItem = { ...newProduct, quantity: quantity}
+      const cartItem = { ...newProduct, quantity: quantity }
       newCart.push(cartItem)
     } else {
       newCart[index].quantity += quantity
@@ -30,8 +37,9 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setCart(newCart)
     localStorage.setItem("cart", JSON.stringify(newCart))
     localStorage.setItem("restaurant", JSON.stringify(restaurant))
+
   }
-  
+
 
   const style = {
     position: 'absolute',
@@ -54,7 +62,13 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setQuantity(event.target.value);
   };
 
-  console.log(quantity)
+  const teste = checkCart.map((quantidade) => {
+    return (
+      <>{quantidade.quantity}
+      </>)
+
+  })
+
 
   return (
 
@@ -69,21 +83,48 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
               <ContainerCard>
                 {
                   restaurantDetail && restaurantDetail.map((product) => {
+
                     if (item === product.category) {
+
                       return (<div>
                         <ContainerProducts key={product.id}>
                           <ImgProducts src={product.photoUrl} alt="Foto do produto" />
                           <ContainerTexts>
                             <TitleProduct>{product.name}</TitleProduct>
                             <DescriptonText>{product.description}</DescriptonText>
-                            <ContainerPriceButton>
-                              <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
-                              <ButtonAdd onClick={() => { addToCart(product) }}>Adicionar</ButtonAdd>
-                            </ContainerPriceButton>
+                            <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
                           </ContainerTexts>
+                          {
+                            checkCart && checkCart.map((quant) => {
+                              if (quant.id === product.id) {
+                              return (
+                                <ContainerButton>
+                                  {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
+                                  {quant.quantity > 0 ?
+                                    <Button>remover</Button>
+                                    :
+                                    <Button onClick={() => { addToCart(product) }}>adicionar</Button>
+                                  }
+                                </ContainerButton>
+                              )
+                            } /* else if (quant.id !== product.id) {
+                              return (
+                                <ContainerButton>
+                                  {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
+                                  {quant.quantity > 0 ?
+                                    <Button>remover</Button>
+                                    :
+                                    <Button onClick={() => { addToCart(product) }}>adicionar</Button>
+                                  }
+                                </ContainerButton>
+                              )
+
+                            } */
+                            })
+                          }
                         </ContainerProducts>
                         <Modal
-                          open={open} 
+                          open={open}
                           onClose={handleClose}
                           aria-labelledby="modal-modal-title"
                           aria-describedby="modal-modal-description"
@@ -125,7 +166,6 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
         })
 
       }
-
     </div>
   )
 }
