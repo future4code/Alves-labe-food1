@@ -10,13 +10,17 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [quantity, setQuantity] = useState(1)
-  const [newProduct, setNewProduct] = useState()
+  const [newProduct, setNewProduct] = useState([])
   const [checkCart, setCheckCart] = useState()
+  const [productsId, setProductsId] = useState([])
+  const arrayVazio = []
 
   useEffect(() => {
     const check = cart.filter((item) => item.id === newProduct.id)
-    console.log(check)
-    setCheckCart(check)
+    arrayVazio.push(check)
+    
+    setCheckCart(arrayVazio)
+    console.log("array vazio",arrayVazio)
   }, [cart])
   console.log(checkCart)
 
@@ -63,13 +67,44 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setQuantity(event.target.value);
   };
 
-  // const teste = checkCart.map((quantidade) => {
-  //   return (
-  //     <>{quantidade.quantity}
-  //     </>)
+  const teste =(product, productId) => {
+    if (checkCart.length === 0 )
+    return(
+      <Button onClick={() => { addToCart(product) }}>adicionar</Button>
+    ) 
+     if (checkCart.length > 0) {
 
-  // })
+      const teste2 = checkCart.map((quant) => {
+                            
+        if (quant.id === productId) {
+          return (
+            <ContainerButton>
+              {quant.quantity > 0 ?
+              <div>
 
+                <Quantity>{quant.quantity}</Quantity>
+                  <Button>remover</Button>
+              </div>
+                :
+                <Button onClick={() => { addToCart(product) }}>adicionar</Button>
+              }
+            </ContainerButton>
+          )
+        } else {
+          return (<Button onClick={() => { addToCart(product) }}>adicionar</Button>)
+        }
+
+      })
+
+      return teste2
+    }
+
+  }
+
+  
+console.log("carrinho",cart)
+  console.log("checkCart",checkCart)
+  console.log("productsId", productsId)
 
   return (
 
@@ -95,25 +130,11 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                             <DescriptonText>{product.description}</DescriptonText>
                             <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
                           </ContainerTexts>
-                          {
-                            checkCart && checkCart.map((quant) => {
-                            
-                              if (quant.id === product.id) {
-                                return (
-                                  <ContainerButton>
-                                    {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
-                                    {/* {quant.quantity > 0 ?
-                                      <Button>remover</Button>
-                                      :
-                                      <Button onClick={() => { addToCart(product) }}>adicionar</Button>
-                                    } */}
-                                  </ContainerButton>
-                                )
-                              }
-
-                            })
-                            
-                          }
+                          
+                          <ContainerButton>
+                            {teste(product, product.id, )}
+                          </ContainerButton>
+                         
                           {/* {<Button>Adicionar</Button> <Button>Excluir</Button>} */}
 
 
