@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
-import { ContainerCard, ContainerCategory, ContainerPriceButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd } from './CardProductsStyled'
+import { ContainerCard, ContainerCategory, ContainerPriceButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 import { Alert, Box, Button, FormControl, MenuItem, Modal, Select, Snackbar, Typography } from '@mui/material';
 
@@ -24,10 +24,8 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     if (index === -1) {
       const cartItem = { ...newProduct, quantity: quantity}
       newCart.push(cartItem)
-      console.log('cart do modal', newCart)
     } else {
       newCart[index].quantity += quantity
-      console.log('ta no else', newCart)
     }
     setCart(newCart)
     localStorage.setItem("cart", JSON.stringify(newCart))
@@ -80,17 +78,20 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                             <DescriptonText>{product.description}</DescriptonText>
                             <ContainerPriceButton>
                               <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
-                              <ButtonAdd onClick={() => { addToCart(product) }}>Adicionar</ButtonAdd>
+                              
                             </ContainerPriceButton>
+                            <ContainerButtons>
+                            <ButtonAdd onClick={() => { addToCart(product) }}>Adicionar</ButtonAdd>
+                            </ContainerButtons>
                           </ContainerTexts>
                         </ContainerProducts>
                         <Modal
-                          open={open}
+                          open={open} 
                           onClose={handleClose}
                           aria-labelledby="modal-modal-title"
                           aria-describedby="modal-modal-description"
                         >
-                          <Box sx={style}>
+                          <Box sx={Style}>
                             <Typography variant="h6" component="h2" sx={{ fontSize: '16px', letterSpacing: '-0.39px', textAlign: 'center' }}>
                               Selecione a quantidade desejada
                             </Typography>
