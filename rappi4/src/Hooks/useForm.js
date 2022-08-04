@@ -14,6 +14,6 @@ export default function useForm(inicialState) {
     setform(inicialState)
   }
 
-  return {form, handleChange, cleanFields}
+  return {form, handleChange, setform, cleanFields}
 
 }
