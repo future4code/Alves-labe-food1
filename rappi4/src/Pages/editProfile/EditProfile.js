@@ -76,7 +76,6 @@ export default function EditProfile() {
                     onChange={handleChange}
                     value={form.name}
                     type='text'
-                    defaultValue={profile && profile.name}
                 />
                 
                 <TextField
@@ -87,7 +86,7 @@ export default function EditProfile() {
                     label="Email"
                     placeholder='Email'
                     onChange={handleChange}
-                    value={form.email === "" ? form.email = profile.email : form.email}
+                    value={form.email}
                     type='text'
                 />
                 
