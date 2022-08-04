@@ -8,6 +8,7 @@ export default function useForm(inicialState) {
     const {name, value} = event.target
     setform({...form, [name]: value})
   }
+  
 
   const cleanFields = () => {
     setform(inicialState)

@@ -11,6 +11,9 @@ import Search from '../Pages/Search/Search'
 import { CategoryP } from '../Pages/Feed/FeedStyled'
 import Cart from '../Pages/Cart/Cart'
 import Header from '../Components/Header/Header'
+import MyProfile from '../Pages/MyProfile/MyProfile'
+import EditProfile from '../Pages/editProfile/EditProfile'
+import EditAddress from '../Pages/EditAddress/EditAddress'
 
 export default function Router() {
     return (
@@ -27,6 +30,9 @@ export default function Router() {
                 <Route path='/pedidoEmAndamento' element={ <OrderInProgress /> } />
                 <Route path='/busca' element={ <Search /> } />
                 <Route path='/carrinho' element={ <Cart /> } />
+                <Route path='/perfil' element={ <MyProfile /> } />
+                <Route path='/editarPerfil' element={ <EditProfile /> } />
+                <Route path='/editarEndereco' element={ <EditAddress /> } />
             </Routes>
         </BrowserRouter>
     )

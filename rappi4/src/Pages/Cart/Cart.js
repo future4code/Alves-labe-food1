@@ -72,7 +72,7 @@ export default function Cart() {
     })
 }, [])
 
-console.log(cart)
+console.log('esse e o carrinho', cart)
 console.log(profile)
 
 

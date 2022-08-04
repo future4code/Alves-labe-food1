@@ -37,3 +37,15 @@ export const goToSearch = (navigate) => {
 export const goToCart = (navigate) => {
     navigate('/carrinho')
 }
+
+export const goToMyProfile = (navigate) => {
+    navigate('/perfil')
+}
+
+export const goToEditProfile = (navigate) => {
+    navigate('/editarPerfil')
+}
+
+export const goToEditAddress = (navigate) => {
+    navigate('/editarEndereco')
+}
