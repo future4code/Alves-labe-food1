@@ -9,49 +9,31 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [quantity, setQuantity] = useState()
+  const [quantity, setQuantity] = useState(1)
+  const [newProduct, setNewProduct] = useState()
 
   const addToCart = (product) => {
-    const index = cart.findIndex((i) => i.id === product.id)
+    console.log(product)
+    setNewProduct(product)
+    handleOpen()
+  }
+
+  const addToCartModal = () => {
+    const index = cart.findIndex((i) => i.id === newProduct.id)
     const newCart = [...cart]
     if (index === -1) {
-      const cartItem = { ...product, quantity: quantity }
+      const cartItem = { ...newProduct, quantity: quantity}
       newCart.push(cartItem)
-      console.log('cart sem modal', newCart)
-      handleOpen()
+      console.log('cart do modal', newCart)
     } else {
-      newCart[index].quantity += 1
-      handleOpen()
+      newCart[index].quantity += quantity
+      console.log('ta no else', newCart)
     }
     setCart(newCart)
     localStorage.setItem("cart", JSON.stringify(newCart))
     localStorage.setItem("restaurant", JSON.stringify(restaurant))
-
   }
-
-  const addToCartModal = (product) => {
-    console.log(product)
-      cart && cart.map((item) => {
-        if (item.name === product.name) {
-          return item.quantity + quantity
-        }
-      })
-    // console.log(product)
-    // const index = cart.findIndex((i) => i.id === product.id)
-    // const newCart = [...cart]
-    // if (index === -1) {
-    //   const cartItem = { ...product, quantity: quantity }
-    //   newCart.push(cartItem)
-    //   console.log('cart do modal', newCart)
-    //   console.log('ta no if', newCart)
-    // } else {
-    //   newCart[index].quantity += quantity
-    //   console.log('ta no else', newCart)
-    // }
-    // setCart(newCart)
-    // localStorage.setItem("cart", JSON.stringify(newCart))
-    // localStorage.setItem("restaurant", JSON.stringify(restaurant))
-  }
+  
 
   const style = {
     position: 'absolute',
@@ -127,7 +109,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                             </FormControl>
                             <Button
                               sx={{ fontSize: '16px', letterSpacing: '-0.39px', alignSelf: 'flex-end', width: '200px', p: '1px' }}
-                              onClick={() => { addToCart(product) }}
+                              onClick={() => { addToCartModal() }}
                             >
                               Adicionar ao carrinho
                             </Button>
