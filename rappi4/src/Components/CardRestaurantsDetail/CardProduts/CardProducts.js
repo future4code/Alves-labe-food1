@@ -11,7 +11,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const handleClose = () => setOpen(false);
   const [quantity, setQuantity] = useState(1)
   const [newProduct, setNewProduct] = useState()
-  const [checkCart, setCheckCart] = useState([])
+  const [checkCart, setCheckCart] = useState()
 
   useEffect(() => {
     const check = cart.filter((item) => item.id === newProduct.id)
@@ -19,6 +19,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setCheckCart(check)
   }, [cart])
   console.log(checkCart)
+
   const addToCart = (product) => {
     // console.log(product)
     setNewProduct(product)
@@ -62,12 +63,12 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setQuantity(event.target.value);
   };
 
-  const teste = checkCart.map((quantidade) => {
-    return (
-      <>{quantidade.quantity}
-      </>)
+  // const teste = checkCart.map((quantidade) => {
+  //   return (
+  //     <>{quantidade.quantity}
+  //     </>)
 
-  })
+  // })
 
 
   return (
@@ -96,32 +97,26 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                           </ContainerTexts>
                           {
                             checkCart && checkCart.map((quant) => {
+                            
                               if (quant.id === product.id) {
-                              return (
-                                <ContainerButton>
-                                  {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
-                                  {quant.quantity > 0 ?
-                                    <Button>remover</Button>
-                                    :
-                                    <Button onClick={() => { addToCart(product) }}>adicionar</Button>
-                                  }
-                                </ContainerButton>
-                              )
-                            } /* else if (quant.id !== product.id) {
-                              return (
-                                <ContainerButton>
-                                  {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
-                                  {quant.quantity > 0 ?
-                                    <Button>remover</Button>
-                                    :
-                                    <Button onClick={() => { addToCart(product) }}>adicionar</Button>
-                                  }
-                                </ContainerButton>
-                              )
+                                return (
+                                  <ContainerButton>
+                                    {quant.quantity ? <Quantity>{quant.quantity}</Quantity> : <div></div>}
+                                    {/* {quant.quantity > 0 ?
+                                      <Button>remover</Button>
+                                      :
+                                      <Button onClick={() => { addToCart(product) }}>adicionar</Button>
+                                    } */}
+                                  </ContainerButton>
+                                )
+                              }
 
-                            } */
                             })
+                            
                           }
+                          {/* {<Button>Adicionar</Button> <Button>Excluir</Button>} */}
+
+
                         </ContainerProducts>
                         <Modal
                           open={open}
