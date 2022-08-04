@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from '@mui/material'
 
 export const ContainerCategory = styled.section`
    display: flex;
@@ -53,22 +54,40 @@ export const ValueProduct = styled.p`
     font-weight: 400;
     margin: 0;
 `
-export const ButtonAdd = styled.button`
-    width: 5.625rem;
-    height: 1.9375rem;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    background-color: transparent;
-    border: 1px solid #000;
-    /* position: absolute;
-    right: 23px; */
-    align-self: flex-end;
 
-`
-export const ContainerPriceButton = styled.section`
+export const ContainerButton = styled.section`
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-end;
+   height: 101%;
+   width: 5.625rem;
+   position:relative;
+   top:-1px;
+   right: -1px;
+   .MuiButton-root{
+        text-transform:lowercase;
+        background: 'transparent';
+        padding: 4px;
+        font-size: 12px;
+        width: 90px;
+        letter-spacing: -0.29px;
+        color:${props=> props.checkCart> 0 ? '#E86E5A' : "#000000"};
+        border: solid 1px ${props=> props.checkCart > 0 ? '#E86E5A' : "#000000"};
+        border-radius:8px 0px;
+   }
+`
+export const Quantity = styled.div`
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border: solid 1px #E86E5A;
+    color:#E86E5A;
+    font-size: 16px;
+    letter-spacing: -0.39px;
+    border-radius:0px 8px;
+    width: 33px;
+    height: 33px;
 `
 
 export const Style = {
@@ -84,4 +103,4 @@ export const Style = {
     display: 'flex',
     flexDirection: 'column',
     gap: '28px'
-  };
+};
