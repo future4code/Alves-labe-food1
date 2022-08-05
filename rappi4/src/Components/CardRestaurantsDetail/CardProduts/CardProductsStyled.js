@@ -84,6 +84,7 @@ export const ContainerButton = styled.section`
         color:${props=> props.checkCart > 0 ? '#E86E5A' : "#000000"};
         border: solid 1px ${props=> props.checkCart > 0 ? '#E86E5A' : "#000000"};
         border-radius:8px 0px;
+        margin-top: ${props=> props.checkCart > 0 ? "0px": "91%"};
    }
 `
 
