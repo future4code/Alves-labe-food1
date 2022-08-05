@@ -39,7 +39,6 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                 <DescriptonText>{product.description}</DescriptonText>
                 <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
             </ContainerTexts>
-
             <ContainerButton checkCart={checkCart.length}>
                 {
                     cart.map((quant) => {
@@ -55,18 +54,12 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                     })
 
                 }
-
                 {checkCart.length > 0 ?
                     <Button onClick={() => removeItem(product.id)}>Remover</Button>
                     :
                     <Button onClick={() => addToCart(product)}>Adicionar</Button>
                 }
-
             </ContainerButton>
-
-
-
-
         </ContainerProducts>
     )
 }

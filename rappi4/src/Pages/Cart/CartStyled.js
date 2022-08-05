@@ -1,4 +1,11 @@
+import { display, flexbox } from '@mui/system';
 import styled from 'styled-components'
+
+export const DisplayCards = styled.div`
+display: flex;
+flex-direction: column;
+gap: 12px;
+`
 
 export const EndUser = styled.div`
 width:91.3vw;

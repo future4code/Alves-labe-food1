@@ -3,8 +3,11 @@ import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import GlobalContext from '../../Global/GlobalContext'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
-import { EndUser, StyledHR, TituloEndUser, ParEnd, NameRest, EndRest } from './CartStyled'
+import { EndUser, StyledHR, DisplayCards, TituloEndUser, ParEnd, NameRest, EndRest } from './CartStyled'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
+import { Button } from '@mui/material'
+import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from '../../Components/CardRestaurantsDetail/CardProduts/CardProductsStyled'
+
 export default function Cart() {
   const { cart, setCart, alert, setAlert } = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
@@ -24,6 +27,22 @@ export default function Cart() {
     setCart(newCart)
   }, [])
 
+  const removeItem = (itemID) => {
+    const newBruto = newCart
+      .map((item) => {
+        if (item.id === itemID) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          }
+
+        }
+        return item;
+      })
+      .filter((item) => item.quantity > 0)
+    setCart(newCart)
+    localStorage.setItem("cart", JSON.stringify(newBruto))
+  }
 
   const placeOrder = () => {
     const arrayProducts = cart && cart?.map((item) => {
@@ -74,24 +93,55 @@ export default function Cart() {
   }, [])
 
 
-
+  const newCart = JSON.parse(localStorage.getItem("cart"))
   useEffect(() => {
     let totalCart = 0;
-    if (cart?.length > 0) {
-      cart?.forEach((product) => {
+    if (newCart?.length > 0) {
+      newCart?.forEach((product) => {
         totalCart = totalCart + product.price * product.quantity
       })
       const subTotal = totalCart + restaurant?.shipping
       setTotal(subTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
-    } else if (cart?.length === 0) {
-      <p>Não tem</p>
+    } else if (newCart?.length === 0) {
+      setTotal(0)
     }
-  }, [cart])
-
+  }, [newCart])
 
   const payment = (method) => {
     setPaymentMethod(method)
   }
+
+
+console.log('cart', cart)
+console.log('new cart', newCart)
+  const renderCart = newCart.map((product) => {
+    return (
+      <ContainerProducts>
+        <ImgProducts src={product.photoUrl} alt="Foto do produto" />
+        <ContainerTexts>
+          <TitleProduct>{product.name}</TitleProduct>
+          <DescriptonText>{product.description}</DescriptonText>
+          <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
+        </ContainerTexts>
+        <ContainerButton>
+          {
+            newCart.map((quant) => {
+              if (quant.id === product.id) {
+                return (
+                  <ContainerButton>
+                    <Quantity>{quant.quantity}</Quantity>
+                  </ContainerButton>
+                )
+              } else {
+                <div></div>
+              }
+            })
+          }
+          <Button onClick={() => removeItem(product.id)} >Remover</Button>
+        </ContainerButton>
+      </ContainerProducts>
+    )
+  })
 
   return (
     <div>
@@ -104,7 +154,10 @@ export default function Cart() {
         <EndRest>{restaurant?.address}</EndRest>
         <EndRest>{restaurant?.deliveryTime}min</EndRest>
       </>
-      
+      <DisplayCards>
+      {renderCart}
+      </DisplayCards>
+
       <p>Frete: R$ {restaurant?.shipping},00</p>
       <p>SUBTOTAL: {total}</p>
       <p>Forma de pagamento</p>
@@ -112,7 +165,7 @@ export default function Cart() {
 
       <input onClick={() => payment("money")} type="radio" name="options" id="dinheiro" value="money" />
       <label for="dinheiro">Dinheiro</label>
-      <input onClick={() => payment("creditcard")}type="radio" name="options" id="cartao" value="creditcard" />
+      <input onClick={() => payment("creditcard")} type="radio" name="options" id="cartao" value="creditcard" />
       <label for="cartao">Cartão de Crédito</label>
 
 
