@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import GlobalState from '../../../Global/GlobalState'
 import { Button } from '@mui/material'
-import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons, Quantity, ContainerTexts } from './CardProductsStyled'
+import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
     const { cart, setCart, removeCart } = useContext(GlobalContext)
@@ -30,7 +30,7 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
         localStorage.setItem("cart", JSON.stringify(newProducts))
     }
 
-    console.log(cart)
+    // console.log(cart)
     return (
         <ContainerProducts key={key}>
             <ImgProducts src={product.photoUrl} alt="Foto do produto" />
@@ -40,7 +40,7 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                 <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
             </ContainerTexts>
 
-            <ContainerButton checkCart={checkCart}>
+            <ContainerButton checkCart={checkCart.length}>
                 {
                     cart.map((quant) => {
                         if (quant.id === product.id) {
