@@ -66,8 +66,6 @@ export default function EditAddress() {
 
     return (
         <MainContainer>
-            <h4>Editar endereço</h4>
-
             <FormStyled onSubmit={onSubmitAdress}>
                 <TextField
                     name='street'

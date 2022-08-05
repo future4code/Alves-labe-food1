@@ -10,6 +10,7 @@ const GlobalState = (props) => {
     const [cart, setCart] = useState([])
     const [isActiveOrder, setIsActiveOrder] = useState(false)
 
+
     const Provider = GlobalContext.Provider
 
     const values = {

@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { goBack } from '../../Routes/Coordinator'
 import Back from '../../Assets/back.svg'
-import {ContainerHeader, Titles, BackImg, DivImagine, Line} from './HeaderStyled'
+import { ContainerHeader, Titles, BackImg, DivImagine, Line } from './HeaderStyled'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -53,6 +53,30 @@ const Header = () => {
                 <ContainerHeader>
                     <BackImg src={Back} alt="ícone back" onClick={() => goBack(navigate)} />
                     <Titles>Restaurante</Titles>
+                    <DivImagine></DivImagine>
+                </ContainerHeader>
+            )
+        } else if (window.location.pathname === "/perfil") {
+            return (
+                <ContainerHeader>
+                    <div></div>
+                    <Titles>Meu Perfil</Titles>
+                    <div></div>
+                </ContainerHeader>
+            )
+        } else if (window.location.pathname === "/editarPerfil") {
+            return (
+                <ContainerHeader>
+                    <BackImg src={Back} alt="ícone back" onClick={() => goBack(navigate)} />
+                    <Titles>Editar</Titles>
+                    <DivImagine></DivImagine>
+                </ContainerHeader>
+            )
+        } else if (window.location.pathname === "/editarEndereco") {
+            return (
+                <ContainerHeader>
+                    <BackImg src={Back} alt="ícone back" onClick={() => goBack(navigate)} />
+                    <Titles>Endereço</Titles>
                     <DivImagine></DivImagine>
                 </ContainerHeader>
             )
