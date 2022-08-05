@@ -81,11 +81,13 @@ export const ContainerButton = styled.section`
         font-size: 12px;
         width: 90px;
         letter-spacing: -0.29px;
-        color:${props=> props.checkCart> 0 ? '#E86E5A' : "#000000"};
+        color:${props=> props.checkCart > 0 ? '#E86E5A' : "#000000"};
         border: solid 1px ${props=> props.checkCart > 0 ? '#E86E5A' : "#000000"};
         border-radius:8px 0px;
    }
 `
+
+
 export const Quantity = styled.div`
     display: flex;
     justify-content:center;

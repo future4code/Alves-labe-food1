@@ -3,7 +3,7 @@ import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
 import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons, Quantity } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 import { Alert, Box, FormControl, MenuItem, Modal, Select, Snackbar, Typography, Button } from '@mui/material';
-
+import CardProducts2 from './CardProducts2'
 const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const { cart, setCart } = useContext(GlobalContext)
   const [open, setOpen] = React.useState(false);
@@ -15,17 +15,11 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const [productsId, setProductsId] = useState([])
   const arrayVazio = []
 
-  useEffect(() => {
-    const check = cart.filter((item) => item.id === newProduct.id)
-    arrayVazio.push(check)
-    
-    setCheckCart(arrayVazio)
-    console.log("array vazio",arrayVazio)
-  }, [cart])
-  console.log(checkCart)
+  
+
+  //
 
   const addToCart = (product) => {
-    // console.log(product)
     setNewProduct(product)
     handleOpen()
   }
@@ -36,75 +30,26 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     if (index === -1) {
       const cartItem = { ...newProduct, quantity: quantity }
       newCart.push(cartItem)
+      alert('Produto adicionado ao carrinho')
+      handleClose()
     } else {
       newCart[index].quantity += quantity
+      alert('Produto adicionado ao carrinho')
+      handleClose()
     }
     setCart(newCart)
     localStorage.setItem("cart", JSON.stringify(newCart))
     localStorage.setItem("restaurant", JSON.stringify(restaurant))
 
-  }
+  } 
 
-
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '216px',
-    bgcolor: '#fff',
-    boxShadow: 24,
-    p: '31px 16px 21px 16px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '28px'
-  };
+  //
 
   const quantityOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   const handleChange = (event) => {
     setQuantity(event.target.value);
   };
-
-  const teste =(product, productId) => {
-    if (checkCart.length === 0 )
-    return(
-      <Button onClick={() => { addToCart(product) }}>adicionar</Button>
-    ) 
-     if (checkCart.length > 0) {
-
-      const teste2 = checkCart.map((quant) => {
-                            
-        if (quant.id === productId) {
-          return (
-            <ContainerButton>
-              {quant.quantity > 0 ?
-              <div>
-
-                <Quantity>{quant.quantity}</Quantity>
-                  <Button>remover</Button>
-              </div>
-                :
-                <Button onClick={() => { addToCart(product) }}>adicionar</Button>
-              }
-            </ContainerButton>
-          )
-        } else {
-          return (<Button onClick={() => { addToCart(product) }}>adicionar</Button>)
-        }
-
-      })
-
-      return teste2
-    }
-
-  }
-
-  
-console.log("carrinho",cart)
-  console.log("checkCart",checkCart)
-  console.log("productsId", productsId)
 
   return (
 
@@ -119,26 +64,16 @@ console.log("carrinho",cart)
               <ContainerCard>
                 {
                   restaurantDetail && restaurantDetail.map((product) => {
-
                     if (item === product.category) {
 
                       return (<div>
-                        <ContainerProducts key={product.id}>
-                          <ImgProducts src={product.photoUrl} alt="Foto do produto" />
-                          <ContainerTexts>
-                            <TitleProduct>{product.name}</TitleProduct>
-                            <DescriptonText>{product.description}</DescriptonText>
-                            <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
-                          </ContainerTexts>
-                          
-                          <ContainerButton>
-                            {teste(product, product.id, )}
-                          </ContainerButton>
+                        <CardProducts2 
+                         key={product.id}
+                         product={product}
+                         setNewProduct={setNewProduct}
+                         addToCart={addToCart}
+                        />
                          
-                          {/* {<Button>Adicionar</Button> <Button>Excluir</Button>} */}
-
-
-                        </ContainerProducts>
                         <Modal
                           open={open}
                           onClose={handleClose}
