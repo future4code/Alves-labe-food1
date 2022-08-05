@@ -62,3 +62,9 @@ width: 20.5rem;
   letter-spacing: -0.39px;
   color: #b8b8b8;
 `
+
+export const StyledHR = styled.hr`
+width: 20.5rem;
+
+
+`

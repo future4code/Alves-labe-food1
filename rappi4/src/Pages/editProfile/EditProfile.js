@@ -64,7 +64,6 @@ export default function EditProfile() {
   
   return (
     <MainContainer>
-         <h4>Editar Perfil</h4>
             <FormStyled onSubmit={onSubmitProfile}>
                 <TextField
                     inputProps={{ minLength: 4 }}

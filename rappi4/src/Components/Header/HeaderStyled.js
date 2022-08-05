@@ -4,7 +4,7 @@ export const ContainerHeader = styled.div`
 height: 44px;
 display: flex;
 justify-content: space-between;
-border-bottom: 1px solid gray;
+box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
 margin-bottom: 8px;
 `
 

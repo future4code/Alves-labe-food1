@@ -8,7 +8,11 @@ export default function useRequestData(inicialData, url, refresh) {
 
     useEffect(() => {
         // setIsLoading(true)
-        axios.get(url, HEADER)
+        axios.get(url, {
+            headers: {
+                auth: localStorage.getItem('token')
+            }
+        })
             .then((res) => {
                 // console.log(res)
                 setData(res.data.restaurants)

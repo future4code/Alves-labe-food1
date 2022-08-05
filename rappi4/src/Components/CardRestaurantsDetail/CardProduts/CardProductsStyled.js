@@ -7,9 +7,18 @@ export const ContainerCategory = styled.section`
    width: 100%;
 `
 export const TitleCategory = styled.section`
-    font-size: 16;
     border-bottom: solid 1px #000;
+    p{
     font-weight: 600;
+    font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: #000;
+}
 `
 export const ContainerCard = styled.section`
     display: flex;
