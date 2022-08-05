@@ -6,7 +6,7 @@ import axios from 'axios'
 import { EndUser, StyledHR, TituloEndUser, ParEnd, NameRest, EndRest } from './CartStyled'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 export default function Cart() {
-  const { cart, setCart } = useContext(GlobalContext)
+  const { cart, setCart, alert, setAlert } = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
   const [paymentMethod, setPaymentMethod] = useState("")
   const [restaurant, setRestaurant] = useState({})
@@ -46,10 +46,11 @@ export default function Cart() {
         }
       })
       .then((res) => {
+        setAlert(true)
         console.log("pedido feito", res)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        console.log(err.response.data.message)
       })
 
   }
