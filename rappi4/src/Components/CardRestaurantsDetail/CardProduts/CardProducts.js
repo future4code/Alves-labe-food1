@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ContainerCard, ContainerCategory, TitleCategory, Style } from './CardProductsStyled'
+import { ContainerCard, ContainerCategory, TitleCategory, Style, MappedDiv } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 import { Box, FormControl, MenuItem, Modal, Select, Typography, Button } from '@mui/material';
 import CardProducts2 from './CardProducts2'
@@ -17,7 +17,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   }
 
   const addToCartModal = () => {
-    const index = cart.findIndex((i) => i.id === newProduct.id)
+    const index = cart && cart?.findIndex((i) => i.id === newProduct.id)
     const newCart = [...cart]
     if (index === -1) {
       const cartItem = { ...newProduct, quantity: quantity }
@@ -54,7 +54,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                   restaurantDetail && restaurantDetail.map((product) => {
                     if (item === product.category) {
 
-                      return (<div>
+                      return (<MappedDiv>
                         <CardProducts2
                           key={product.id}
                           product={product}
@@ -66,7 +66,8 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                           onClose={handleClose}
                           aria-labelledby="modal-modal-title"
                           aria-describedby="modal-modal-description"
-                          hideBackdrop={true}
+                          onBackdropClick={handleClose}
+                          BackdropProps={{style: {backgroundColor: 'rgba(0, 0, 0, 0.06)'}}}
                         >
                           <Box sx={Style}>
                             <Typography variant="h6" component="h2" sx={{ fontSize: '16px', letterSpacing: '-0.39px', textAlign: 'center' }}>
@@ -78,7 +79,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                                 onChange={handleChange}
                               >
                                 {
-                                  quantityOptions.map((option) => {
+                                  quantityOptions?.map((option) => {
                                     return <MenuItem key={option} value={option}>{option}</MenuItem>
                                   })
                                 }
@@ -92,7 +93,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                             </Button>
                           </Box>
                         </Modal>
-                      </div>
+                      </MappedDiv>
                       )
                     }
                   })

@@ -10,7 +10,7 @@ import {useUnprotectedPage} from '../../Hooks/useUnprotectedPage'
 import {goToSignup, goToFeed} from '../../Routes/Coordinator'
 
 export default function Login() {
- // useUnprotectedPage()
+ useUnprotectedPage()
   const { form, handleChange } = useForm({ email: "", password: "" })
   const navigate = useNavigate()  
 

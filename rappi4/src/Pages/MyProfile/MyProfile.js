@@ -6,12 +6,15 @@ import Edit from '../../Assets/edit.svg'
 import { goToEditAddress, goToEditProfile } from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 
 export default function MyProfile() {
   const [profile, setProfile] = useState()
   const [history, setHistory] = useState()
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
+
+  useProtectedPage()
 
   useEffect(() => {
     axios

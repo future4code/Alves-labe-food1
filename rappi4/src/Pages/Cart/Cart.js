@@ -8,12 +8,15 @@ import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { Button } from '@mui/material'
 import { ContainerProducts, ImgProducts, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from '../../Components/CardRestaurantsDetail/CardProduts/CardProductsStyled'
 import { ContainerButton, Money, Credit, Frete, Subtotal, Valor, Total, Formas, Methods, ButtonConfirm } from './CartStyled'
+import { goToFeed } from '../../Routes/Coordinator'
+import { useNavigate } from 'react-router-dom'
 export default function Cart() {
-  const { cart, setCart, alert, setAlert } = useContext(GlobalContext)
+  const { cart, setCart, alertOrder, setAlertOrder } = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
   const [paymentMethod, setPaymentMethod] = useState("")
   const [restaurant, setRestaurant] = useState({})
   const [total, setTotal] = useState(0)
+  const navigate = useNavigate()
 
   useProtectedPage()
 
@@ -65,11 +68,14 @@ export default function Cart() {
         }
       })
       .then((res) => {
+        console.log(res)
         alert(`Seu pedido foi feito`)
-        setAlert(true)
+        goToFeed(navigate)
+        
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        console.log(err)
+        
       })
 
   }
@@ -111,9 +117,9 @@ export default function Cart() {
     setPaymentMethod(method)
   }
 
-  const renderCart = newCart.map((product) => {
+  const renderCart = newCart?.map((product, index) => {
     return (
-      <ContainerProducts>
+      <ContainerProducts key={index}>
         <ImgProducts src={product.photoUrl} alt="Foto do produto" />
         <ContainerTexts>
           <TitleProduct>{product.name}</TitleProduct>
@@ -122,10 +128,10 @@ export default function Cart() {
         </ContainerTexts>
         <ContainerButton>
           {
-            newCart.map((quant) => {
+            newCart.map((quant, index) => {
               if (quant.id === product.id) {
                 return (
-                  <ContainerButton>
+                  <ContainerButton key={index}>
                     <Quantity>{quant.quantity}</Quantity>
                   </ContainerButton>
                 )
@@ -140,6 +146,7 @@ export default function Cart() {
     )
   })
 
+  console.log(newCart)
   return (
     <>
       <EndUser>
@@ -147,17 +154,20 @@ export default function Cart() {
         <ParEnd>{profile.address}</ParEnd>
       </EndUser>
       <>
-
+        { newCart && newCart?.length > 0 ? <div>
         <NameRest>{restaurant?.name}</NameRest>
         <EndRest>{restaurant?.address}</EndRest>
-        <EndRest>{restaurant?.deliveryTime}min</EndRest>
-
+        <EndRest>{restaurant?.deliveryTime}min</EndRest></div>
+        : <div></div>}
       </>
       <DisplayCards>
         {renderCart}
       </DisplayCards>
 
+      { newCart && newCart?.length > 0 ? <div>
       <Frete>Frete: R$ {restaurant?.shipping},00</Frete>
+      </div>
+        : <Frete>Frete: R$ 00,00</Frete>} 
       <Total>
         <Subtotal>SUBTOTAL:
         </Subtotal>

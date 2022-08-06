@@ -4,11 +4,13 @@ import { BASE_URL } from '../../Constants/urls'
 import useForm from '../../Hooks/useForm'
 import { TextField } from '@mui/material'
 import axios from 'axios'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 
 export default function EditProfile() {
   const [profile, setProfile] = useState({})
   const { form, handleChange, setform} = useForm({ name: "" , email: "", cpf: "" })
   const token = localStorage.getItem("token")
+  useProtectedPage()
 
   useEffect(() => {
   axios

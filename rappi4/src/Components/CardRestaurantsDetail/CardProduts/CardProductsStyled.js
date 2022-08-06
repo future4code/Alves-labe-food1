@@ -110,9 +110,13 @@ export const Style = {
     width: '85%',
     height: '170px',
     bgcolor: '#fff',
-    boxShadow: 24,
+    boxShadow: 1,
     p: '31px 16px 21px 16px',
     display: 'flex',
     flexDirection: 'column',
     gap: '28px',
 };
+
+export const MappedDiv = styled.div`
+
+`

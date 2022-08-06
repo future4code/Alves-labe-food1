@@ -7,7 +7,7 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
     const [checkCart, setCheckCart] = useState([])
 
     useEffect(() => {
-        const check = cart.filter((item) => item.id === product.id)
+        const check = cart && cart?.filter((item) => item.id === product.id)
         setCheckCart(check)
     }, [cart])
 
@@ -37,9 +37,9 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                 <DescriptonText>{product.description}</DescriptonText>
                 <ValueProduct>{product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ValueProduct>
             </ContainerTexts>
-            <ContainerButton checkCart={checkCart.length}>
+            <ContainerButton checkCart={checkCart && checkCart?.length}>
                 {
-                    cart.map((quant) => {
+                    cart && cart?.map((quant) => {
                         if (quant.id === product.id) {
                             return (
                                 <div>
@@ -52,7 +52,7 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                     })
 
                 }
-                {checkCart.length > 0 ?
+                {checkCart && checkCart?.length > 0 ?
                     <Button onClick={() => removeItem(product.id)}>Remover</Button>
                     :
                     <Button onClick={() => addToCart(product)}>Adicionar</Button>

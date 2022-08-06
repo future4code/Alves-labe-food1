@@ -51,7 +51,7 @@ font-stretch: normal;
 font-style: normal;
 line-height: normal;
 letter-spacing: -0.39px;
-color: #d0d0d0;
+color: #8a8383;
 `
 export const CategoryP = styled.button`
 font-family: Roboto;

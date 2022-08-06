@@ -19,7 +19,7 @@ export default function useRequestData(inicialData, url, refresh) {
                 // setIsLoading(false)
             }).catch((err) => {
                 // setIsLoading(false)
-                console.log(err)
+                
             })
     }, [url, refresh])
     return (data)
