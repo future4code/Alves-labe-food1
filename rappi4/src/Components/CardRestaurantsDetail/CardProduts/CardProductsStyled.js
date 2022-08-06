@@ -37,12 +37,12 @@ export const ImgProducts = styled.img`
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
     object-fit: cover;
-    margin-right: 16px;
+    margin-right: 1rem;
 `
 export const ContainerTexts = styled.section`
     display: flex;
     flex-direction: column;
-    padding-left: 5px;
+    margin-top: 0.5rem;
 `
 export const TitleProduct = styled.h1`
     font-size: 16px;
@@ -98,8 +98,8 @@ export const Quantity = styled.div`
     font-size: 16px;
     letter-spacing: -0.39px;
     border-radius:0px 8px;
-    width: 33px;
-    height: 33px;
+    width: 32px;
+    height: 32px;
 `
 
 export const Style = {
@@ -107,12 +107,12 @@ export const Style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '216px',
+    width: '85%',
+    height: '170px',
     bgcolor: '#fff',
     boxShadow: 24,
     p: '31px 16px 21px 16px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '28px'
+    gap: '28px',
 };

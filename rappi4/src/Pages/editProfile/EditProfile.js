@@ -10,8 +10,6 @@ export default function EditProfile() {
   const { form, handleChange, setform, cleanFields } = useForm({ name: "" , email: "", cpf: "" })
   const token = localStorage.getItem("token")
 
-    //
-  
   useEffect(() => {
   axios
       .get(`${BASE_URL}/profile`, {
@@ -24,11 +22,10 @@ export default function EditProfile() {
         setProfile(res.data.user)
       })
       .catch((err) => {
-        console.log(err)
+        alert(err.response.data.message)
       })
   }, [])
 
-  //
 
   useEffect(() => {
     if (profile) {
@@ -40,8 +37,6 @@ export default function EditProfile() {
     }
   }, [profile]);
 
-
-
   const onSubmitProfile = (event) => {
     event.preventDefault()
   axios.put(`${BASE_URL}/profile`, form,  {
@@ -51,7 +46,6 @@ export default function EditProfile() {
     }
 })
 .then((res) => {
-    console.log(res)
   alert("Atualizado!")
 })
 .catch((err) => {

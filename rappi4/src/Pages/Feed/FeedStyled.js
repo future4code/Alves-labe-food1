@@ -78,7 +78,7 @@ margin-bottom: 3.125rem;
 `
 
 export const ContainerAlert = styled.section`
-width: 375px;
+width: 99%;
 height: 118px;
 background-color: #e86e5a;
 position: fixed;
@@ -88,7 +88,7 @@ flex-direction: row;
 `
 
 export const OrderTitle = styled.p`
-margin: 0 0 2px 24px;
+margin: 0 0 0 24px;
 font-family: Roboto;
 font-size: 16px;
 color: #fff;
@@ -97,6 +97,7 @@ color: #fff;
 export const RestaurantOrder = styled.p`
 margin: 8px 0 8px 24px;
 font-family: Roboto;
+font-weight: 600;
 font-size: 16px;
 `
 
@@ -107,9 +108,10 @@ margin-top: 24px;
 `
 
 export const OrderPrice = styled.p`
-margin: 8px 0 0 24px;
+margin: 0 0 0 24px;
 font-family: Roboto;
 font-size: 16px;
+font-weight: 600;
 `
 
 export const DivClock = styled.div`

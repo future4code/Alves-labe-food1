@@ -103,7 +103,7 @@ export default function Feed() {
           <DivInformations>
           <OrderTitle>Pedido em andamento</OrderTitle>
           <RestaurantOrder>{activerOrder?.restaurantName}</RestaurantOrder>
-        <OrderPrice>{activerOrder?.totalPrice}</OrderPrice>
+        <OrderPrice>SUBTOTAL {activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
         </DivInformations>
 
         </ContainerAlert>
