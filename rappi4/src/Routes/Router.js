@@ -6,9 +6,7 @@ import Signup from '../Pages/Signup/Signup'
 import SignupAdress from '../Pages/SignupAdress/SignupAdress'
 import Feed from '../Pages/Feed/Feed'
 import Restaurants from '../Pages/Restaurants/Restaurants'
-import OrderInProgress from '../Pages/OrderInProgress/OrderInProgress'
 import Search from '../Pages/Search/Search'
-import { CategoryP } from '../Pages/Feed/FeedStyled'
 import Cart from '../Pages/Cart/Cart'
 import Header from '../Components/Header/Header'
 import MyProfile from '../Pages/MyProfile/MyProfile'
@@ -27,7 +25,6 @@ export default function Router() {
                 <Route path='/cadastro/endereco' element={ <SignupAdress /> } />
                 <Route path='/feed' element={ <Feed /> } />
                 <Route path='/restaurantes/:id' element={ <Restaurants /> } />
-                <Route path='/pedidoEmAndamento' element={ <OrderInProgress /> } />
                 <Route path='/busca' element={ <Search /> } />
                 <Route path='/carrinho' element={ <Cart /> } />
                 <Route path='/perfil' element={ <MyProfile /> } />

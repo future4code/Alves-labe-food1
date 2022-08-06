@@ -65,8 +65,8 @@ export default function Cart() {
         }
       })
       .then((res) => {
-        setAlert(true)
         alert(`Seu pedido foi feito`)
+        setAlert(true)
       })
       .catch((err) => {
         alert(err.response.data.message)

@@ -2,7 +2,7 @@ import React from 'react'
 import { ButtonCreate, FormStyled, MainContainer } from './SignupAdressStyled'
 import { useNavigate } from 'react-router-dom'
 import useForm from '../../Hooks/useForm'
-import { BASE_URL, HEADER } from '../../Constants/urls'
+import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
 import TextField from '@mui/material/TextField';
 import {useUnprotectedPage} from '../../Hooks/useUnprotectedPage'
@@ -28,10 +28,9 @@ export default function SignupAdress() {
       localStorage.setItem('token', res.data.token)
       cleanFields()
       goToFeed(navigate)
-      console.log(res)
     })
     .catch((err) => {
-      console.log(err)
+      alert(err.response.data.message)
     })
   }
 

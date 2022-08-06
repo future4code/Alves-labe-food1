@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ButtonCreate, FormStyled, Logo, MainContainer, StyledEye } from './SignupStyled'
+import { ButtonCreate, FormStyled, Logo, MainContainer } from './SignupStyled'
 import LogoImg from '../../Assets/logo-future-eats-invert.svg'
 import useForm from '../../Hooks/useForm'
 import TextField from '@mui/material/TextField';
