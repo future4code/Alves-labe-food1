@@ -68,6 +68,8 @@ export const StyledP = styled.p`
 margin: 0;
 font-family: Roboto;
 font-size: 16px;
+font-weight: 600;
+align-self: flex-start;
 `
 
 export const EndereçoCadastrado = styled.p`

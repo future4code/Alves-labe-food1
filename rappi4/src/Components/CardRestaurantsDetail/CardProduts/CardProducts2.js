@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
-import GlobalState from '../../../Global/GlobalState'
 import { Button } from '@mui/material'
-import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from './CardProductsStyled'
+import { ContainerButton, ContainerProducts, ImgProducts, TitleProduct, DescriptonText, ValueProduct, Quantity, ContainerTexts } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
     const { cart, setCart, removeCart } = useContext(GlobalContext)
@@ -44,9 +43,9 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
                     cart.map((quant) => {
                         if (quant.id === product.id) {
                             return (
-                                <ContainerButton>
+                                <div>
                                     <Quantity>{quant.quantity}</Quantity>
-                                </ContainerButton>
+                                </div>
                             )
                         } else {
                             <div></div>

@@ -27,42 +27,41 @@ export default function EditAddress() {
                 localStorage.setItem('token', res.data.token)
                 cleanFields()
                 goToFeed(navigate)
-                console.log(res)
             })
             .catch((err) => {
-                console.log(err)
+                alert(err.response.data.message)
             })
     }
-    
+
     useEffect(() => {
         const token = localStorage.getItem('token')
         axios
             .get(`${BASE_URL}/profile/address`, {
-              headers:
-              {
-                auth: token
-              }
+                headers:
+                {
+                    auth: token
+                }
             })
             .then((res) => {
-              setAddress(res.data.address)
+                setAddress(res.data.address)
             })
             .catch((err) => {
-              console.log(err)
+                alert(err.response.data.message)
             })
-        }, [])
-      
-        useEffect(() => {
-          if (address) {
+    }, [])
+
+    useEffect(() => {
+        if (address) {
             setform({
-            street: address.street,
-            number: address.number,
-            neighbourhood: address.neighbourhood,
-            city: address.city,
-            state: address.state,
-            complement: address.complement,
+                street: address.street,
+                number: address.number,
+                neighbourhood: address.neighbourhood,
+                city: address.city,
+                state: address.state,
+                complement: address.complement,
             });
-          }
-        }, [address]);
+        }
+    }, [address]);
 
     return (
         <MainContainer>

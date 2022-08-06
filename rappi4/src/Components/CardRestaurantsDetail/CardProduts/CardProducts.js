@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { ContainerTexts } from '../CardHeaderDetail/CardHeaderDetailStyled'
-import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, ButtonAdd, Style, ContainerButtons, Quantity } from './CardProductsStyled'
+import React, { useContext, useState } from 'react'
+import { ContainerCard, ContainerCategory, TitleCategory, Style } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
-import { Alert, Box, FormControl, MenuItem, Modal, Select, Snackbar, Typography, Button } from '@mui/material';
+import { Box, FormControl, MenuItem, Modal, Select, Typography, Button } from '@mui/material';
 import CardProducts2 from './CardProducts2'
 const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const { cart, setCart } = useContext(GlobalContext)
@@ -11,13 +10,6 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const handleClose = () => setOpen(false);
   const [quantity, setQuantity] = useState(1)
   const [newProduct, setNewProduct] = useState([])
-  const [checkCart, setCheckCart] = useState()
-  const [productsId, setProductsId] = useState([])
-  const arrayVazio = []
-
-  
-
-  //
 
   const addToCart = (product) => {
     setNewProduct(product)
@@ -40,10 +32,7 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     setCart(newCart)
     localStorage.setItem("cart", JSON.stringify(newCart))
     localStorage.setItem("restaurant", JSON.stringify(restaurant))
-
-  } 
-
-  //
+  }
 
   const quantityOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -52,7 +41,6 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   };
 
   return (
-
     <div>
       {
         categories && categories.map((item, index) => {
@@ -67,18 +55,18 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                     if (item === product.category) {
 
                       return (<div>
-                        <CardProducts2 
-                         key={product.id}
-                         product={product}
-                         setNewProduct={setNewProduct}
-                         addToCart={addToCart}
+                        <CardProducts2
+                          key={product.id}
+                          product={product}
+                          setNewProduct={setNewProduct}
+                          addToCart={addToCart}
                         />
-                         
                         <Modal
                           open={open}
                           onClose={handleClose}
                           aria-labelledby="modal-modal-title"
                           aria-describedby="modal-modal-description"
+                          hideBackdrop={true}
                         >
                           <Box sx={Style}>
                             <Typography variant="h6" component="h2" sx={{ fontSize: '16px', letterSpacing: '-0.39px', textAlign: 'center' }}>
@@ -94,7 +82,6 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                                     return <MenuItem key={option} value={option}>{option}</MenuItem>
                                   })
                                 }
-
                               </Select>
                             </FormControl>
                             <Button
@@ -110,12 +97,10 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
                     }
                   })
                 }
-
               </ContainerCard>
             </ContainerCategory>
           )
         })
-
       }
     </div>
   )
