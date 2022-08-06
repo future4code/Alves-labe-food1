@@ -19,7 +19,6 @@ export default function Login() {
     axios.post(`${BASE_URL}/login`, form)
     .then((res) => {
       alert("Você logou")
-      console.log(res)
       localStorage.setItem('token', res.data.token)
       goToFeed(navigate)
     })

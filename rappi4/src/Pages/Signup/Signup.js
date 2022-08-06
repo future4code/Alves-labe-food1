@@ -33,7 +33,6 @@ export default function Signup() {
             axios
                 .post(`${BASE_URL}/signup`, form)
                 .then((res) => {
-                    console.log(res)
                     localStorage.setItem('token', res.data.token)
                     alert("Seu Email Foi Cadastrado com sucesso")
                     cleanFields()
@@ -41,7 +40,6 @@ export default function Signup() {
                 })
                 .catch((err) => {
                     alert(err.response.data.message)
-                    console.log(err.response.data)
                 })
         } else {
             alert('Senha não é igual')
