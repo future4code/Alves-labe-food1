@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerAlert = styled.section`
-width: 100vw;
+width: 375px;
 height: 118px;
 background-color: #e86e5a;
 position: fixed;

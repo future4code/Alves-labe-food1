@@ -50,4 +50,5 @@ font-weight: 400;
 export const SpanClick = styled.span`
 font-size: 1rem;
 font-weight: 500;
+cursor: pointer;
 `

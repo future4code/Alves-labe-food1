@@ -63,6 +63,9 @@ export default function Feed() {
 
   const getActiveOrder = () => {
     const token = localStorage.getItem('token')
+
+    if (window.location.pathname === "/default") {
+    } else {
       axios
         .get(`${BASE_URL}/active-order`, {
           headers:
@@ -84,21 +87,7 @@ export default function Feed() {
           console.log(err)
           alert(err.response.data.message)
         })
-        // return (
-        //   <ContainerAlert>
-  
-        //     <DivClock>
-        //       <img src={Clock} />
-        //     </DivClock>
-  
-        //     <DivInformations>
-        //       <OrderTitle>Pedido em andamento</OrderTitle>
-        //       <RestaurantOrder>{activerOrder && activerOrder?.restaurantName}</RestaurantOrder>
-        //       <OrderPrice>SUBTOTAL {activerOrder && activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
-        //     </DivInformations>
-  
-        //   </ContainerAlert>
-        // )
+      }
       
       
   }

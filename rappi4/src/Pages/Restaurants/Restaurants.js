@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -6,16 +6,34 @@ import { BASE_URL } from '../../Constants/urls'
 import CardHeaderDetail from '../../Components/CardRestaurantsDetail/CardHeaderDetail/CardHeaderDetail'
 import CardProducts from '../../Components/CardRestaurantsDetail/CardProduts/CardProducts'
 import { ContainerProducts } from './RestaurantsStyled'
+import GlobalContext from '../../Global/GlobalContext'
 export default function Restaurants() {
   const params = useParams()
+  const { cart, setCart } = useContext(GlobalContext)
   const [restaurantDetail, setRestauranteDetail] = useState([])
   const [restaurant, setRestaurant] = useState([])
   const [categories, setCategories] = useState([])
   useProtectedPage()
 
+  const setCartNotNull = () => {
+    if (cart === null) {
+      setCart([])
+    }
+  }
+
+  useEffect(() => {
+    setCartNotNull()
+  
+    
+  }, [])
+  
+
   const token = localStorage.getItem('token')
 
   useEffect(() => {
+    if (token === null) {
+
+    } else {
     axios.get(`${BASE_URL}/restaurants/${params.id}`, {
       headers: {
         auth: token
@@ -28,6 +46,7 @@ export default function Restaurants() {
       .catch((err) => {
         alert(err.response.data.message)
       })
+    }
   }, [])
 
   useEffect(() => {

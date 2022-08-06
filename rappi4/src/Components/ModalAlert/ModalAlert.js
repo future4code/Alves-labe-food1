@@ -13,7 +13,7 @@ export default function ModalAlert(props) {
     <DivInformations>
       <OrderTitle>Pedido em andamento</OrderTitle>
       <RestaurantOrder>{props.restaurantName}</RestaurantOrder>
-      <OrderPrice>SUBTOTAL {props.totalPrice}</OrderPrice>
+      <OrderPrice>SUBTOTAL {props.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
     </DivInformations>
 
   </ContainerAlert>
