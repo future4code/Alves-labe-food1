@@ -9,20 +9,19 @@ align-items: center;
 `
 
 export const ContainerInfos = styled.section`
-
 `
 export const ContainerEdit = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-width: 22.5rem;
+width: 21.4rem;
 img{
     cursor: pointer;
 }
 `
 
 export const ContainerAdress = styled.section`
-width: 22.5rem;
+width: 21.4rem;
 height: 4.125rem;
 margin: 1rem 0;
 background-color: #eee;
@@ -42,15 +41,16 @@ cursor: pointer;
 export const ColumnAdress = styled.div`
 display: flex;
 flex-direction: column;
+margin-left: 8px;
 `
 
 export const DisplayCards = styled.div`
 display: flex;
 flex-direction: column;
+margin-bottom: 30px;
 `
 
 export const Card = styled.section`
-width: 20.5rem;
 height: 6.375rem;
 margin: 7px 0 0;
 padding: 1rem;
@@ -70,6 +70,7 @@ font-family: Roboto;
 font-size: 16px;
 font-weight: 600;
 align-self: flex-start;
+margin-left: 16px;
 `
 
 export const EndereçoCadastrado = styled.p`

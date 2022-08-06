@@ -11,15 +11,16 @@ import { BASE_URL } from '../../Constants/urls'
 import useRequestData from '../../Hooks/useRequestData'
 import axios from 'axios'
 import Clock from '../../Assets/clock.svg'
+import ModalAlert from '../../Components/ModalAlert/ModalAlert'
 
 export default function Feed() {
-  const { cart, alert, setAlert } = useContext(GlobalContext)
+  const { cart, alertOrder, setAlertOrder } = useContext(GlobalContext)
   const [activeCategory, setActiveCategory] = useState('')
   const [searchInput, setSearchInput] = useState('')
   const [refresh, setRefresh] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const restaurants = useRequestData([], `${BASE_URL}/restaurants`, refresh)
-  const [activerOrder, setActiveOrder] = useState({})
+  const [activeOrder, setActiveOrder] = useState()
   const navigate = useNavigate()
   useVerifyAdress()
   useProtectedPage()
@@ -62,9 +63,6 @@ export default function Feed() {
 
   const getActiveOrder = () => {
     const token = localStorage.getItem('token')
-    if (alert === true) {
-
-
       axios
         .get(`${BASE_URL}/active-order`, {
           headers:
@@ -74,32 +72,37 @@ export default function Feed() {
         })
         .then((res) => {
           if (res.data.order !== null) {
+            console.log(res)
             setActiveOrder(res.data.order)
           }
           if (res.data.order === null) {
-            setAlert(false)
+            console.log(res)
+            setAlertOrder(false)
           }
         })
         .catch((err) => {
+          console.log(err)
           alert(err.response.data.message)
         })
-      return (
-        <ContainerAlert>
-
-          <DivClock>
-            <img src={Clock} />
-          </DivClock>
-
-          <DivInformations>
-            <OrderTitle>Pedido em andamento</OrderTitle>
-            <RestaurantOrder>{activerOrder?.restaurantName}</RestaurantOrder>
-            <OrderPrice>SUBTOTAL {activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
-          </DivInformations>
-
-        </ContainerAlert>
-      )
-    }
+        // return (
+        //   <ContainerAlert>
+  
+        //     <DivClock>
+        //       <img src={Clock} />
+        //     </DivClock>
+  
+        //     <DivInformations>
+        //       <OrderTitle>Pedido em andamento</OrderTitle>
+        //       <RestaurantOrder>{activerOrder && activerOrder?.restaurantName}</RestaurantOrder>
+        //       <OrderPrice>SUBTOTAL {activerOrder && activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
+        //     </DivInformations>
+  
+        //   </ContainerAlert>
+        // )
+      
+      
   }
+
 
   useEffect(() => {
     getActiveOrder()
@@ -116,7 +119,10 @@ export default function Feed() {
 
         {showRestaurants}
       </DisplayCards>
-      {getActiveOrder()}
+      {activeOrder && <ModalAlert 
+      restaurantName={activeOrder?.restaurantName} 
+      totalPrice={activeOrder?.totalPrice}
+      activeOrder={activeOrder && activeOrder}/>}
       <FooterMenu />
     </MainContainer>
   )

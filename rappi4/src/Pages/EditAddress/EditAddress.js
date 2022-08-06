@@ -6,11 +6,13 @@ import useForm from '../../Hooks/useForm'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
 import { goToFeed } from '../../Routes/Coordinator'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 
 export default function EditAddress() {
     const navigate = useNavigate()
     const { form, handleChange, setform, cleanFields } = useForm({ street: "", number: "", neighbourhood: "", city: "", state: "", complement: "" })
     const [address, setAddress] = useState()
+    useProtectedPage()
 
     const onSubmitAdress = (event) => {
         const token = localStorage.getItem('token')

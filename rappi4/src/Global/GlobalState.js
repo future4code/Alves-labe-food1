@@ -9,7 +9,7 @@ const GlobalState = (props) => {
     const restaurants = useRequestData([], `${BASE_URL}/restaurants`, refresh, setIsLoading)
     const [cart, setCart] = useState([])
     const [isActiveOrder, setIsActiveOrder] = useState(false)
-    const [alert, setAlert] = useState(false)
+    const [alertOrder, setAlertOrder] = useState(false)
 
 
     const Provider = GlobalContext.Provider
@@ -18,8 +18,8 @@ const GlobalState = (props) => {
         restaurants,
         cart,
         setCart,
-        alert,
-        setAlert,
+        alertOrder,
+        setAlertOrder,
         
     }
 
