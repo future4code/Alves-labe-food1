@@ -18,7 +18,6 @@ export default function Login() {
     event.preventDefault()
     axios.post(`${BASE_URL}/login`, form)
     .then((res) => {
-      alert("Você logou")
       localStorage.setItem('token', res.data.token)
       goToFeed(navigate)
     })
@@ -26,8 +25,6 @@ export default function Login() {
       alert(err.response.data.message)
     })
   }
-
-  console.log(form)
 
   return (
     <MainContainer>

@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export default function EditProfile() {
   const [profile, setProfile] = useState({})
-  const { form, handleChange, setform, cleanFields } = useForm({ name: "" , email: "", cpf: "" })
+  const { form, handleChange, setform} = useForm({ name: "" , email: "", cpf: "" })
   const token = localStorage.getItem("token")
 
   useEffect(() => {

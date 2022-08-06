@@ -12,7 +12,6 @@ import useRequestData from '../../Hooks/useRequestData'
 import axios from 'axios'
 import Clock from '../../Assets/clock.svg'
 
-
 export default function Feed() {
   const { cart, alert, setAlert } = useContext(GlobalContext)
   const [activeCategory, setActiveCategory] = useState('')
@@ -25,41 +24,33 @@ export default function Feed() {
   useVerifyAdress()
   useProtectedPage()
 
-
-
-    const showRestaurants = restaurants.filter((restaurant) => {
-      return restaurant.name
+  const showRestaurants = restaurants.filter((restaurant) => {
+    return restaurant.name
+      .toLowerCase()
+      .includes(searchInput.toLowerCase()) || restaurant.description
         .toLowerCase()
-        .includes(searchInput.toLowerCase()) || restaurant.description
+        .includes(searchInput.toLowerCase()) || restaurant.category
           .toLowerCase()
-          .includes(searchInput.toLowerCase()) || restaurant.category
-            .toLowerCase()
-            .includes(searchInput.toLowerCase())
+          .includes(searchInput.toLowerCase())
+  })
+    .filter((restaurant) => {
+      if (activeCategory === 'Todos') {
+        return restaurant.name
+      } else {
+        return restaurant.category
+          .toLowerCase()
+          .includes(activeCategory.toLowerCase())
+      }
     })
-      .filter((restaurant) => {
-        if (activeCategory === 'Todos') {
-          return restaurant.name
-        } else {
-          return restaurant.category
-            .toLowerCase()
-            .includes(activeCategory.toLowerCase())
-        }
-      })
-      .map((restaurant,index) => {
-        return (
-          <CardFeed key={index} restaurant={restaurant} />
-        )
-      })
-  
-
+    .map((restaurant, index) => {
+      return (
+        <CardFeed key={index} restaurant={restaurant} />
+      )
+    })
 
   const setCategory = (category) => {
     setActiveCategory(category)
   }
-
-
-  console.log(alert)
-
 
   const categorias = restaurants.map((restaurant) => { return restaurant.category })
   let filteredCategories = [...new Set(categorias)]
@@ -68,12 +59,12 @@ export default function Feed() {
   const mappedCategories = allCategories.map((category, index) => {
     return <CategoryP key={index} onClick={() => setCategory(category)}>{category}</CategoryP>
   })
-  
+
   const getActiveOrder = () => {
     const token = localStorage.getItem('token')
     if (alert === true) {
 
-    
+
       axios
         .get(`${BASE_URL}/active-order`, {
           headers:
@@ -84,7 +75,6 @@ export default function Feed() {
         .then((res) => {
           if (res.data.order !== null) {
             setActiveOrder(res.data.order)
-            console.log("active order", res)
           }
           if (res.data.order === null) {
             setAlert(false)
@@ -92,7 +82,7 @@ export default function Feed() {
         })
         .catch((err) => {
           alert(err.response.data.message)
-        }) 
+        })
       return (
         <ContainerAlert>
 
@@ -101,29 +91,29 @@ export default function Feed() {
           </DivClock>
 
           <DivInformations>
-          <OrderTitle>Pedido em andamento</OrderTitle>
-          <RestaurantOrder>{activerOrder?.restaurantName}</RestaurantOrder>
-        <OrderPrice>SUBTOTAL {activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
-        </DivInformations>
+            <OrderTitle>Pedido em andamento</OrderTitle>
+            <RestaurantOrder>{activerOrder?.restaurantName}</RestaurantOrder>
+            <OrderPrice>SUBTOTAL {activerOrder?.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</OrderPrice>
+          </DivInformations>
 
         </ContainerAlert>
       )
-      }
+    }
   }
-  
+
   useEffect(() => {
     getActiveOrder()
-  
-    
+
+
   }, [])
-  
+
 
   return (
     <MainContainer>
       <SearchBar placeholder='Restaurante' onClick={() => goToSearch(navigate)}></SearchBar>
       <DivCategory>{mappedCategories}</DivCategory>
       <DisplayCards>
-        
+
         {showRestaurants}
       </DisplayCards>
       {getActiveOrder()}
