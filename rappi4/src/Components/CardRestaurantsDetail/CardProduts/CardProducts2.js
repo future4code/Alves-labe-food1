@@ -30,7 +30,6 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
         localStorage.setItem("cart", JSON.stringify(newProducts))
     }
 
-    // console.log(cart)
     return (
         <ContainerProducts key={key}>
             <ImgProducts src={product.photoUrl} alt="Foto do produto" />

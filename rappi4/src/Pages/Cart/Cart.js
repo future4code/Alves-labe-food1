@@ -6,8 +6,8 @@ import axios from 'axios'
 import { EndUser, StyledHR, DisplayCards, TituloEndUser, ParEnd, NameRest, EndRest } from './CartStyled'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { Button } from '@mui/material'
-import { ContainerCard, ContainerCategory, ContainerButton, ContainerProducts, ImgProducts, TitleCategory, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from '../../Components/CardRestaurantsDetail/CardProduts/CardProductsStyled'
-
+import { ContainerProducts, ImgProducts, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from '../../Components/CardRestaurantsDetail/CardProduts/CardProductsStyled'
+import { ContainerButton, Money, Credit, Frete, Subtotal, Valor, Total, Formas, Methods, ButtonConfirm } from './CartStyled'
 export default function Cart() {
   const { cart, setCart, alert, setAlert } = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
@@ -66,10 +66,10 @@ export default function Cart() {
       })
       .then((res) => {
         setAlert(true)
-        console.log("pedido feito", res)
+        alert(`Seu pedido foi feito`)
       })
       .catch((err) => {
-        console.log(err.response.data.message)
+        alert(err.response.data.message)
       })
 
   }
@@ -111,9 +111,6 @@ export default function Cart() {
     setPaymentMethod(method)
   }
 
-
-console.log('cart', cart)
-console.log('new cart', newCart)
   const renderCart = newCart.map((product) => {
     return (
       <ContainerProducts>
@@ -144,34 +141,45 @@ console.log('new cart', newCart)
   })
 
   return (
-    <div>
+    <>
       <EndUser>
         <TituloEndUser>Endereço de entrega</TituloEndUser>
         <ParEnd>{profile.address}</ParEnd>
       </EndUser>
       <>
+
         <NameRest>{restaurant?.name}</NameRest>
         <EndRest>{restaurant?.address}</EndRest>
         <EndRest>{restaurant?.deliveryTime}min</EndRest>
+
       </>
       <DisplayCards>
-      {renderCart}
+        {renderCart}
       </DisplayCards>
 
-      <p>Frete: R$ {restaurant?.shipping},00</p>
-      <p>SUBTOTAL: {total}</p>
-      <p>Forma de pagamento</p>
+      <Frete>Frete: R$ {restaurant?.shipping},00</Frete>
+      <Total>
+        <Subtotal>SUBTOTAL:
+        </Subtotal>
+        <Valor> {total}</Valor>
+      </Total>
+      <Formas>Forma de pagamento</Formas>
       <StyledHR />
-
-      <input onClick={() => payment("money")} type="radio" name="options" id="dinheiro" value="money" />
-      <label for="dinheiro">Dinheiro</label>
-      <input onClick={() => payment("creditcard")} type="radio" name="options" id="cartao" value="creditcard" />
-      <label for="cartao">Cartão de Crédito</label>
-
-
-      <button onClick={placeOrder}>Confirmar</button>
+      <Methods>
+        <Money>
+        <input onClick={() => payment("money")} type="radio" name="options" id="dinheiro" value="money" />
+        <label for="dinheiro">Dinheiro</label>
+        </Money>
+      <Credit>
+        <input onClick={() => payment("creditcard")} type="radio" name="options" id="cartao" value="creditcard" />
+        <label for="cartao">Cartão de Crédito</label>
+        </Credit>
+      </Methods>
+      <ButtonConfirm>
+        <button onClick={placeOrder}>Confirmar</button>
+      </ButtonConfirm>
       <FooterMenu />
-    </div>
+    </>
 
   )
 }

@@ -27,7 +27,7 @@ export default function Restaurants() {
         setRestauranteDetail(res.data.restaurant.products)
       })
       .catch((err) => {
-        console.log(err)
+        alert(err.response.data.message)
       })
   }, [])
 
