@@ -17,6 +17,9 @@ export default function MyProfile() {
   useProtectedPage()
 
   useEffect(() => {
+    if (token === null) {
+
+    } else {
     axios
       .get(`${BASE_URL}/profile`, {
         headers:
@@ -30,9 +33,13 @@ export default function MyProfile() {
       .catch((err) => {
         alert(err.response.data.message)
       })
+    }
   }, [])
 
   useEffect(() => {
+    if (token === null) {
+
+    } else {
     axios
       .get(`${BASE_URL}/orders/history`, {
         headers:
@@ -44,8 +51,11 @@ export default function MyProfile() {
         setHistory(res.data.orders)
       })
       .catch((err) => {
+        if (token === null) {
+        }
         alert(err.response.data.message)
       })
+    }
   }, [])
 
   const showOrders = history && history.map((product) => {

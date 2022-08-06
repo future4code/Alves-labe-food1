@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ContainerCard, ContainerCategory, TitleCategory, Style, MappedDiv } from './CardProductsStyled'
 import GlobalContext from '../../../Global/GlobalContext'
 import { Box, FormControl, MenuItem, Modal, Select, Typography, Button } from '@mui/material';

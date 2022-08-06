@@ -48,6 +48,9 @@ export default function Cart() {
   }
 
   const placeOrder = () => {
+    if (token === null) {
+
+    } else {
     const arrayProducts = cart && cart?.map((item) => {
       return {
         id: item.id,
@@ -70,19 +73,23 @@ export default function Cart() {
       .then((res) => {
         console.log(res)
         alert(`Seu pedido foi feito`)
+        localStorage.removeItem("cart")
         goToFeed(navigate)
+        setCart([])
         
       })
       .catch((err) => {
-        console.log(err)
+        alert(err.response.data.message)
         
       })
-
+    }
   }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
+    if (token === null) {
 
+    } else {
     axios
       .get(`${BASE_URL}/profile`, {
         headers:
@@ -96,6 +103,7 @@ export default function Cart() {
       .catch((err) => {
         console.log(err)
       })
+    }
   }, [])
 
 

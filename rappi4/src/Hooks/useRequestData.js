@@ -8,6 +8,8 @@ export default function useRequestData(inicialData, url, refresh) {
 
     useEffect(() => {
         // setIsLoading(true)
+        if (window.location.pathname === "/default") {
+        } else {
         axios.get(url, {
             headers: {
                 auth: localStorage.getItem('token')
@@ -21,6 +23,7 @@ export default function useRequestData(inicialData, url, refresh) {
                 // setIsLoading(false)
                 
             })
+        }
     }, [url, refresh])
     return (data)
 }
