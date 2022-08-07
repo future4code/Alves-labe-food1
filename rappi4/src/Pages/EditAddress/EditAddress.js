@@ -7,6 +7,7 @@ import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
 import { goToFeed } from '../../Routes/Coordinator'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
+import { toast } from 'react-toastify'
 
 export default function EditAddress() {
     const navigate = useNavigate()
@@ -31,7 +32,7 @@ export default function EditAddress() {
                 goToFeed(navigate)
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                toast.error(err.response.data.message)
             })
     }
 
@@ -46,9 +47,10 @@ export default function EditAddress() {
             })
             .then((res) => {
                 setAddress(res.data.address)
+                toast.success("Endereço atualizado!")
             })
             .catch((err) => {
-                alert(err.response.data.message)
+                toast.error(err.response.data.message)
             })
     }, [])
 

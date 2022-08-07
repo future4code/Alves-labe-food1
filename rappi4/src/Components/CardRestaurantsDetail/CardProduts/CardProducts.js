@@ -3,6 +3,8 @@ import { ContainerCard, ContainerCategory, TitleCategory, Style, MappedDiv } fro
 import GlobalContext from '../../../Global/GlobalContext'
 import { Box, FormControl, MenuItem, Modal, Select, Typography, Button } from '@mui/material';
 import CardProducts2 from './CardProducts2'
+import { toast } from 'react-toastify'
+
 const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
   const { cart, setCart } = useContext(GlobalContext)
   const [open, setOpen] = React.useState(false);
@@ -22,11 +24,11 @@ const CardProducts = ({ categories, restaurantDetail, restaurant }) => {
     if (index === -1) {
       const cartItem = { ...newProduct, quantity: quantity }
       newCart.push(cartItem)
-      alert('Produto adicionado ao carrinho')
+      toast.success('Produto adicionado ao carrinho')
       handleClose()
     } else {
       newCart[index].quantity += quantity
-      alert('Produto adicionado ao carrinho')
+      toast.success('Produto adicionado ao carrinho')
       handleClose()
     }
     setCart(newCart)

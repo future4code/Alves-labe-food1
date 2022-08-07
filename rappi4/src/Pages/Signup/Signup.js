@@ -11,6 +11,7 @@ import InputMask from 'react-input-mask';
 import { useUnprotectedPage } from '../../Hooks/useUnprotectedPage'
 import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { toast } from 'react-toastify'
 
 export default function Signup() {
       useUnprotectedPage()
@@ -34,15 +35,15 @@ export default function Signup() {
                 .post(`${BASE_URL}/signup`, form)
                 .then((res) => {
                     localStorage.setItem('token', res.data.token)
-                    alert("Seu Email Foi Cadastrado com sucesso")
+                    toast.success("Seu Email Foi Cadastrado com sucesso")
                     cleanFields()
                     goToAdressSignup(navigate)
                 })
                 .catch((err) => {
-                    alert(err.response.data.message)
+                    toast.error(err.response.data.message)
                 })
         } else {
-            alert('Senha não é igual')
+            toast.error('Senha não é igual')
         }
     }
 
@@ -54,7 +55,6 @@ export default function Signup() {
                 required
                 id="outlined-required"
                 label="CPF"
-                //pattern="/^(\d{3}\.){2}\d{3}\-\d{2}$/"
                 pattern="[0-9]{11}"
                 title='Digite um CPF no formato: xxx.xxx.xxx-xx'
                 placeholder='000.000.000-00'

@@ -7,6 +7,8 @@ import CardHeaderDetail from '../../Components/CardRestaurantsDetail/CardHeaderD
 import CardProducts from '../../Components/CardRestaurantsDetail/CardProduts/CardProducts'
 import { ContainerProducts, MainContainer } from './RestaurantsStyled'
 import GlobalContext from '../../Global/GlobalContext'
+import { toast } from 'react-toastify'
+
 export default function Restaurants() {
   const params = useParams()
   const { cart, setCart } = useContext(GlobalContext)
@@ -44,7 +46,7 @@ export default function Restaurants() {
         setRestauranteDetail(res.data.restaurant.products)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
     }
   }, [])
