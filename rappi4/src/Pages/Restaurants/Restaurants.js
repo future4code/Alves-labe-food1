@@ -5,7 +5,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../Constants/urls'
 import CardHeaderDetail from '../../Components/CardRestaurantsDetail/CardHeaderDetail/CardHeaderDetail'
 import CardProducts from '../../Components/CardRestaurantsDetail/CardProduts/CardProducts'
-import { ContainerProducts } from './RestaurantsStyled'
+import { ContainerProducts, MainContainer } from './RestaurantsStyled'
 import GlobalContext from '../../Global/GlobalContext'
 export default function Restaurants() {
   const params = useParams()
@@ -59,11 +59,11 @@ export default function Restaurants() {
 
 
   return (
-    <div>
+    <MainContainer>
       <ContainerProducts>
         <CardHeaderDetail rest={restaurant} />
         <CardProducts categories={categories} restaurantDetail={restaurantDetail} restaurant={restaurant} />
       </ContainerProducts>
-    </div>
+    </MainContainer>
   )
 }
