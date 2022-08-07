@@ -30,7 +30,7 @@ const CardProducts2 = ({ key, product, setNewProduct, addToCart }) => {
     }
 
     return (
-        <ContainerProducts key={key}>
+        <ContainerProducts key={product.name}>
             <ImgProducts src={product.photoUrl} alt="Foto do produto" />
             <ContainerTexts>
                 <TitleProduct>{product.name}</TitleProduct>

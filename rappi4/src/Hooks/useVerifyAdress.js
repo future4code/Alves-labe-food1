@@ -25,7 +25,7 @@ export default function useVerifyAdress() {
         .catch((err) => {
             if (token === null) {
             }
-          console.log(err)
+          
         })
     
     }, [])

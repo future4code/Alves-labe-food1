@@ -3,7 +3,7 @@ import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import GlobalContext from '../../Global/GlobalContext'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
-import { EndUser, StyledHR, DisplayCards, TituloEndUser, ParEnd, NameRest, EndRest } from './CartStyled'
+import { EndUser, StyledHR, DisplayCards, TituloEndUser, ParEnd, NameRest, EndRest, MainContainer } from './CartStyled'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { Button } from '@mui/material'
 import { ContainerProducts, ImgProducts, TitleProduct, DescriptonText, ValueProduct, Style, ContainerButtons, Quantity, ContainerTexts } from '../../Components/CardRestaurantsDetail/CardProduts/CardProductsStyled'
@@ -71,7 +71,6 @@ export default function Cart() {
         }
       })
       .then((res) => {
-        console.log(res)
         alert(`Seu pedido foi feito`)
         localStorage.removeItem("cart")
         goToFeed(navigate)
@@ -101,7 +100,7 @@ export default function Cart() {
         setProfile(res.data.user)
       })
       .catch((err) => {
-        console.log(err)
+       alert(err.response.data.message)
       })
     }
   }, [])
@@ -153,10 +152,8 @@ export default function Cart() {
       </ContainerProducts>
     )
   })
-
-  console.log(newCart)
   return (
-    <>
+    <MainContainer>
       <EndUser>
         <TituloEndUser>Endereço de entrega</TituloEndUser>
         <ParEnd>{profile.address}</ParEnd>
@@ -197,7 +194,7 @@ export default function Cart() {
         <button onClick={placeOrder}>Confirmar</button>
       </ButtonConfirm>
       <FooterMenu />
-    </>
+    </MainContainer>
 
   )
 }

@@ -121,3 +121,13 @@ font-family: Roboto;
 font-size: 18px;
 font-weight: bold;
 `
+
+export const ContainerLogout = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 21.4rem;
+img{
+    cursor: pointer;
+    height: 22px;
+}`
