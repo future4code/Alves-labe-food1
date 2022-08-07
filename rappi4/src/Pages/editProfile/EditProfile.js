@@ -5,6 +5,7 @@ import useForm from '../../Hooks/useForm'
 import { TextField } from '@mui/material'
 import axios from 'axios'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
+import { toast } from 'react-toastify'
 
 export default function EditProfile() {
   const [profile, setProfile] = useState({})
@@ -24,7 +25,7 @@ export default function EditProfile() {
         setProfile(res.data.user)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
   }, [])
 
@@ -48,10 +49,10 @@ export default function EditProfile() {
     }
 })
 .then((res) => {
-  alert("Atualizado!")
+  toast.success("Atualizado!")
 })
 .catch((err) => {
-  alert(err.response.data)
+  toast.error(err.response.data)
 })
   }
 

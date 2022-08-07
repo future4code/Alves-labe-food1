@@ -10,6 +10,8 @@ import { ContainerProducts, ImgProducts, TitleProduct, DescriptonText, ValueProd
 import { ContainerButton, Money, Credit, Frete, Subtotal, Valor, Total, Formas, Methods, ButtonConfirm } from './CartStyled'
 import { goToFeed } from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 export default function Cart() {
   const { cart, setCart, alertOrder, setAlertOrder } = useContext(GlobalContext)
   const [profile, setProfile] = useState({})
@@ -71,14 +73,14 @@ export default function Cart() {
         }
       })
       .then((res) => {
-        alert(`Seu pedido foi feito`)
+        toast.success(`Seu pedido foi feito`)
         localStorage.removeItem("cart")
         goToFeed(navigate)
         setCart([])
         
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
         
       })
     }
@@ -100,7 +102,7 @@ export default function Cart() {
         setProfile(res.data.user)
       })
       .catch((err) => {
-       alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
     }
   }, [])

@@ -10,6 +10,7 @@ import { useUnprotectedPage } from '../../Hooks/useUnprotectedPage'
 import { goToSignup, goToFeed } from '../../Routes/Coordinator'
 import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { toast } from 'react-toastify'
 
 export default function Login() {
   useUnprotectedPage()
@@ -29,7 +30,7 @@ export default function Login() {
         goToFeed(navigate)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
   }
 

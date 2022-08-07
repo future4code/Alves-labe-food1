@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import Logout from '../../Assets/logout.svg'
+import { toast } from 'react-toastify'
 
 export default function MyProfile() {
   const [profile, setProfile] = useState()
@@ -32,7 +33,7 @@ export default function MyProfile() {
         setProfile(res.data.user)
       })
       .catch((err) => {
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
     }
   }, [])
@@ -54,7 +55,7 @@ export default function MyProfile() {
       .catch((err) => {
         if (token === null) {
         }
-        alert(err.response.data.message)
+        toast.error(err.response.data.message)
       })
     }
   }, [])

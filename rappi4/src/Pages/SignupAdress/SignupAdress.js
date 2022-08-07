@@ -5,8 +5,9 @@ import useForm from '../../Hooks/useForm'
 import { BASE_URL } from '../../Constants/urls'
 import axios from 'axios'
 import TextField from '@mui/material/TextField';
-import {useUnprotectedPage} from '../../Hooks/useUnprotectedPage'
 import { goToFeed } from '../../Routes/Coordinator'
+import { toast } from 'react-toastify'
+
 
 export default function SignupAdress() {
   // useUnprotectedPage()
@@ -28,9 +29,10 @@ export default function SignupAdress() {
       localStorage.setItem('token', res.data.token)
       cleanFields()
       goToFeed(navigate)
+      toast.success("Endereço cadastrado com sucesso!")
     })
     .catch((err) => {
-      alert(err.response.data.message)
+      toast.error(err.response.data.message)
     })
   }
 

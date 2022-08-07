@@ -11,6 +11,7 @@ import { BASE_URL } from '../../Constants/urls'
 import useRequestData from '../../Hooks/useRequestData'
 import axios from 'axios'
 import ModalAlert from '../../Components/ModalAlert/ModalAlert'
+import { toast } from 'react-toastify'
 
 export default function Feed() {
   const { cart, alertOrder, setAlertOrder } = useContext(GlobalContext)
@@ -81,7 +82,7 @@ export default function Feed() {
           }
         })
         .catch((err) => {
-          alert(err.response.data.message)
+          toast.error(err.response.data.message)
         })
       }
       
