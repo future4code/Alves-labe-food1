@@ -17,7 +17,6 @@ export default function useRequestData(inicialData, url, refresh) {
             .then((res) => {
                 setData(res.data.restaurants)
             }).catch((err) => {   
-                toast.error(err.response.data.message)
             })
         }
     }, [url, refresh])
