@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../../Constants/urls'
-import { Card, ColumnAdress, ContainerAdress, ContainerEdit, ContainerInfos, DateStyle, DisplayCards, EndereçoCadastrado, MainContainer, RestaurantName, Rua, StyledHR, StyledP, TotalPrice } from './MyProfileStyled'
+import { Card, ColumnAdress, ContainerAdress, ContainerEdit, ContainerInfos, ContainerLogout, DateStyle, DisplayCards, EndereçoCadastrado, MainContainer, RestaurantName, Rua, StyledHR, StyledP, TotalPrice } from './MyProfileStyled'
 import Edit from '../../Assets/edit.svg'
-import { goToEditAddress, goToEditProfile } from '../../Routes/Coordinator'
+import { goToDefault, goToEditAddress, goToEditProfile } from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
+import Logout from '../../Assets/logout.svg'
 
 export default function MyProfile() {
   const [profile, setProfile] = useState()
@@ -69,22 +70,30 @@ export default function MyProfile() {
     </Card>
   })
 
+  const clearToken = () => {
+    localStorage.clear("token")
+    goToDefault(navigate)
+  }
+
   return (
     <MainContainer>
       <ContainerInfos>
         <ContainerEdit>
           <StyledP>{profile && profile.name}</StyledP>
-          <img onClick={() => goToEditProfile(navigate)} src={Edit} />
+          <img onClick={() => goToEditProfile(navigate)} alt='edit button' src={Edit} />
         </ContainerEdit>
         <StyledP>{profile && profile.email}</StyledP>
+        <ContainerLogout>
         <StyledP>{profile && profile.cpf}</StyledP>
+        <img src={Logout} alt='logout button' onClick={clearToken}/>
+        </ContainerLogout>
       </ContainerInfos>
       <ContainerAdress>
         <ColumnAdress>
           <EndereçoCadastrado>Endereço cadastrado</EndereçoCadastrado>
           <Rua>{profile && profile.address}</Rua>
         </ColumnAdress>
-        <img src={Edit} onClick={() => goToEditAddress(navigate)} />
+        <img src={Edit} alt='edit button' onClick={() => goToEditAddress(navigate)} />
       </ContainerAdress>
       <DisplayCards>
         <StyledP>Histórico de Pedidos</StyledP>

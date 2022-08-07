@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import GlobalContext from '../../Global/GlobalContext'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import useVerifyAdress from '../../Hooks/useVerifyAdress'
-import { goToRestaurants, goToSearch } from '../../Routes/Coordinator'
-import { CategoryP, ContainerAlert, DisplayCards, DivCategory, DivClock, DivInformations, MainContainer, OrderPrice, OrderTitle, PedidoTitle, RestaurantOrder, SearchBar } from './FeedStyled'
+import { goToSearch } from '../../Routes/Coordinator'
+import { CategoryP, DisplayCards, DivCategory, MainContainer, SearchBar } from './FeedStyled'
 import CardFeed from '../../Components/CardFeed/CardFeed'
 import FooterMenu from '../../Components/FooterMenu/FooterMenu'
 import { BASE_URL } from '../../Constants/urls'
 import useRequestData from '../../Hooks/useRequestData'
 import axios from 'axios'
-import Clock from '../../Assets/clock.svg'
 import ModalAlert from '../../Components/ModalAlert/ModalAlert'
 
 export default function Feed() {
@@ -75,16 +74,13 @@ export default function Feed() {
         })
         .then((res) => {
           if (res.data.order !== null) {
-            console.log(res)
             setActiveOrder(res.data.order)
           }
           if (res.data.order === null) {
-            console.log(res)
-            setAlertOrder(false)
+            
           }
         })
         .catch((err) => {
-          console.log(err)
           alert(err.response.data.message)
         })
       }

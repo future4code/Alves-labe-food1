@@ -209,3 +209,11 @@ width: 20.5rem;
 export const StyledHR = styled.hr`
 width: 21.3rem;
 `
+
+export const MainContainer = styled.section`
+width: 100vw;
+background-color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+`
