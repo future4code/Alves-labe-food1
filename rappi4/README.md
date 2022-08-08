@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+![Logo](.././img-readme/logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Acesse o site:
 
-## Available Scripts
+<a href=http://alves-labe-food1.surge.sh/>Rappi4</a>
 
-In the project directory, you can run:
+## Sobre / Funcionalidades:
 
-### `npm start`
+Ao acessar o Rappi4, o usuário, se já tiver cadastro, poderá fazer o login e, caso não obtenha cadastro, poderá clicar na opção para cadastrar-se. Clicando nessa opção será redirecionado para a página de criação de cadastro onde informará os dados solicitados e, ao finalizar, será redirecionado para a página de cadastrar endereço. Após a realização de cadastro ou login, o usuário será redirecionado para a home, onde poderá visualizar todos os restaurantes disponíveis. 
+Na home o usuário possui duas opções de filtro. Pode buscar o restaurante pelo nome, digitando-o ou pelo tipo de comida que procura. 
+Na home o usuário tem acesso também ao rodapé, onde pode clicar no ícone do carrinho (será redirecionado à uma página onde poderá visualizar os produtos adicionados, o valor total e concluir o pedido ou excluí-lo), no ícone do perfil (poderá nesta página visualizar e editar seus dados e seu endereço, fazer logout e também visualizar seu histórico de pedidos). Existe também o ícone que o levará para a home.
+Para escolher os produtos, o usuário deverá clicar no restaurante escolhido, clicar em "adicionar", selecionar a quantidade desejada e clicar em "adicionar ao carrinho". Se desejar, o usuário pode remover os produtos na mesma página em que os adicionou.
+O layout do site foi todo realizado conforme proposto pela designer Camila Mizutani.
+O projeto foi pensado como mobile first. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Em desenvolvimento:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Loading
+- Layout para desktop
 
-### `npm test`
+## Tecnologias utilizadas:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- Axios
+- Styled Components
+- Material UI
+- JavaScript
+- Toast React
 
-### `npm run build`
+## Desenvolvido por:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Douglas Henrique Ferreira Barbosa
+- Ilena Acioli dos Santos
+- Lucas Magalhães Pacheco
+- Nicole Prim
+- Raquel Baptista Burger
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Imagens:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Imagens](.././img-readme/01.jpg)
+![Imagens2](.././img-readme/02.jpg)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
