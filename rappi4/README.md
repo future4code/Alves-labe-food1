@@ -1,4 +1,4 @@
-![Logo](./img-readme/logo.png)
+![Logo](.././img-readme/logo.png)
 
 # Acesse o site:
 
@@ -37,6 +37,6 @@ O projeto foi pensado como mobile first.
 
 ## Imagens:
 
-![Imagens](./img-readme/01.jpg)
-![Imagens2](./img-readme/02.jpg)
+![Imagens](.././img-readme/01.jpg)
+![Imagens2](.././img-readme/02.jpg)
 
